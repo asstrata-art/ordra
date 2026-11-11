@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://asstrata-art.github.io/ordra/sitemap.xml
