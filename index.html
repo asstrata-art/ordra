@@ -244,6 +244,12 @@ input[type=date],input[type=time]{min-height:44px}
 
 .plan{border-left:4px solid var(--accent)}
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.doors{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:14px}@media(min-width:640px){.doors{grid-template-columns:repeat(3,1fr)}}
+.door{display:flex;flex-direction:column;gap:4px;text-align:left;background:#0f1115;color:#f2f2f2;border:0;border-radius:var(--r);padding:18px 18px 16px;min-height:118px;position:relative}
+.door .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;font-weight:700}
+.door .t{font-size:20px;font-weight:700;letter-spacing:-.015em;margin-top:auto}
+.door .s{font-size:13px;opacity:.7}
+.door:after{content:'→';position:absolute;right:16px;top:14px;opacity:.5;font-size:18px}
 @media(min-width:700px){.stats{grid-template-columns:repeat(5,1fr)}}
 .stat{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--line);border-radius:12px;padding:12px 14px 10px;text-align:left;color:var(--ink);min-width:0}
 .stat.hot{border-top-color:var(--st-sendt)}.stat.warn{border-top-color:var(--accent)}
@@ -341,7 +347,7 @@ h1,h2,h3{letter-spacing:-.02em}
 </style>
 </head>
 <body>
-<header class="hdr"><span class="brand"><i></i>ORDRA<span class="ver">v0.12</span></span><nav class="tabsnav" id="tabsnav"></nav><span class="sp" id="sp"></span><button id="themeBtn" data-settheme="toggle" aria-label="Lys/mørk" style="background:none;border:1px solid #444;color:#fff;border-radius:999px;width:34px;height:34px;display:grid;place-items:center;flex:none;cursor:pointer"><svg class="i" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg></button></header>
+<header class="hdr"><span class="brand"><i></i>ORDRA<span class="ver">v0.13</span></span><nav class="tabsnav" id="tabsnav"></nav><span class="sp" id="sp"></span><button id="themeBtn" data-settheme="toggle" aria-label="Lys/mørk" style="background:none;border:1px solid #444;color:#fff;border-radius:999px;width:34px;height:34px;display:grid;place-items:center;flex:none;cursor:pointer"><svg class="i" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg></button></header>
 <main class="page" id="main"></main>
 <nav class="tabbar" id="nav"></nav>
 <div class="toast" id="toast" role="status"></div>
@@ -378,7 +384,7 @@ const Photos=(()=>{
 
 
 /* ===== Språk: norsk er kilde, engelsk via ordbok på det som vises ===== */
-const T_EN={'Velg':'Choose','Kortbetaling åpner snart. Fram til da: prøv Pro gratis i 14 dager, eller skriv til oss på ordra.ordra@gmail.com så får du en kode samme dag.':'Card payment opens soon. Until then: try Pro free for 14 days, or write to ordra.ordra@gmail.com and get a code the same day.','Prøv Pro gratis i 14 dager':'Try Pro free for 14 days',
+const T_EN={'Historikk':'History','Viser de 60 siste.':'Showing the last 60.','Ordrekontoret':'Order office','aktive ordre':'active jobs','tilbud ute':'quotes out','oppfølginger':'follow-ups','Kalender':'Calendar','i dag':'today','neste 7 dager':'next 7 days','Agentkontorene':'Agent offices','Klar':'Ready','Låst':'Locked','Mittanbud, regnskap, drift, Jarvis':'Leads, bookkeeping, operations, Jarvis','Venter på deg':'Waiting for you','Velg':'Choose','Kortbetaling åpner snart. Fram til da: prøv Pro gratis i 14 dager, eller skriv til oss på ordra.ordra@gmail.com så får du en kode samme dag.':'Card payment opens soon. Until then: try Pro free for 14 days, or write to ordra.ordra@gmail.com and get a code the same day.','Prøv Pro gratis i 14 dager':'Try Pro free for 14 days',
 'Hjem':'Home','Ordrebok':'Orders','Kunder':'Customers','Mer':'More','Ny ordre':'New order','Lagre':'Save','Lukk':'Close','Tilbake':'Back','Alle ordre':'All orders',
 'God morgen.':'Good morning.','God dag.':'Good day.','God kveld.':'Good evening.','Legg inn første ordre, så fyller boka seg selv.':'Add your first order and the book fills itself.',
 'Aktive ordre':'Active orders','Tilbud ute':'Quotes sent','Til oppfølging':'To follow up','Status':'Status','Befaringer neste 7 dager':'Site visits next 7 days','Venter på oppfølging':'Waiting for follow-up','Sist':'Recent',
@@ -553,6 +559,7 @@ function vHjem(){const k=kpis();const i=inn();const hr=new Date().getHours();con
   let h=`<div class="hero"><div class="t"><div class="date">${esc(new Date().toLocaleDateString(LOCALE[LANG]||'nb-NO',{weekday:'long',day:'numeric',month:'long'}))}</div><h1>${esc(hils)}${i.kontaktnavn?', '+esc(i.kontaktnavn):''}.</h1></div><div class="actions" style="margin:0"><button class="btn" data-new="1">${ICON.plus}Ny ordre</button></div></div>`;
   if(!all.length){h+=`<div class="empty-big"><h2>Ordreboka er tom.</h2><p>Legg inn første jobb: kunde, adresse og hva som skal gjøres. Resten – befaring, tilbud, timer – samles i samme mappe.</p><button class="btn" data-new="1">${ICON.plus}Legg inn første ordre</button></div>`;return h}
   {const n=all.length;const lb=i.lastBackup;const since=lb?daysTo(lb)*-1:null;if(n>=3&&(!lb&&n>=10||since!=null&&since>=14))h+=`<div class="note" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span style="flex:1">${lb?t('Det er over to uker siden sist sikkerhetskopi.'):t('Alt ligger bare på denne enheten. Ta en sikkerhetskopi nå og da.')}</span><button class="btn sm" data-backupnow="1">${t('Ta sikkerhetskopi')}</button></div>`}
+  h+=`<div class="doors"><button class="door" data-nav="ordre"><span class="k">${t('Ordrekontoret')}</span><span class="t">${k.aktive.length} ${t('aktive ordre')}</span><span class="s">${k.tilbud.length} ${t('tilbud ute')} · ${k.oppf.length} ${t('oppfølginger')}</span></button><button class="door" data-nav="kal"><span class="k">${t('Kalender')}</span><span class="t">${td.length} ${t('i dag')}</span><span class="s">${wk.length} ${t('neste 7 dager')}</span></button><button class="door" data-panelmer="agenter"><span class="k">${t('Agentkontorene')}</span><span class="t">${has('agenter')?t('Klar'):t('Låst')}</span><span class="s">${t('Mittanbud, regnskap, drift, Jarvis')}</span></button></div>`;
   h+=stempelBox();
   /* Dagens plan */
   h+=`<div class="box plan"><h2>Dagens plan <span class="pill">${td.length}</span><button class="more" data-nav="kal">Kalender</button></h2>${td.length?`<div class="list">${td.map(x=>{const o=x.ord&&Store.get('ordre',x.ord);return `<button class="card" ${x.ord?`data-open="${esc(x.ord)}"`:''} style="--stripe:${x.kind==='bef'?'var(--accent)':x.kind==='oppf'?'var(--warn)':'var(--ink)'}"><div class="main"><div class="t">${x.t?esc(x.t)+' · ':''}${esc(x.txt)}</div><div class="s">${esc(x.sub||'')}</div></div>${o&&o.telefon?`<a class="qbtn" href="tel:${esc(o.telefon.replace(/\s/g,''))}" aria-label="Ring">${ICON.phone}</a>`:''}</button>`}).join('')}</div>`:`<div class="empty">${t('Ingenting planlagt i dag.')} ${k.oppf.length?t('Men noen venter på svar – se under.'):''}</div>`}</div>`;
@@ -560,7 +567,7 @@ function vHjem(){const k=kpis();const i=inn();const hr=new Date().getHours();con
   h+=`<div class="stats"><button class="stat" data-nav="ordre" data-st=""><div class="v num">${k.aktive.length}</div><div class="l">Aktive ordre</div></button><button class="stat ${k.tilbud.length?'hot':''}" data-nav="ordre" data-st="Sendt tilbud"><div class="v num">${nok(tilbudSum)}</div><div class="l">${t('Tilbud ute')} · ${k.tilbud.length}</div></button><button class="stat ${k.oppf.length?'warn':''}" data-nav="ordre" data-st="oppf"><div class="v num">${k.oppf.length}</div><div class="l">Til oppfølging</div></button><button class="stat" data-nav="ordre" data-st="Ferdig utført"><div class="v num">${nok(ufak)}</div><div class="l">${t('Ferdig, ikke fakturert')}</div></button><div class="stat"><div class="v num">${dur(ukeTimer)}</div><div class="l">${t('Timer siste 7 dager')}</div></div></div>`;
   /* Trenger deg */
   const need=[...k.oppf.map(o=>({o,why:t('Følg opp tilbudet'),cls:'warn'})),...k.aktive.filter(o=>gaps(o).length&&!k.oppf.includes(o)).slice(0,3).map(o=>({o,why:t('Mangler')+' '+gaps(o).map(x=>t(x)).join(', '),cls:''})),...all.filter(o=>o.status==='Ferdig utført'&&!o.fakturagrunnlagDato).map(o=>({o,why:t('Lag fakturagrunnlag'),cls:'ok'}))];
-  if(need.length)h+=`<div class="box"><h2>Trenger deg <span class="pill hot">${need.length}</span></h2><div class="list">${need.slice(0,6).map(({o,why,cls})=>`<button class="card" data-open="${esc(o._id)}" style="--stripe:${stv(o.status)}"><div class="main"><div class="t">${esc(lbl(o))} ${esc(o.tittel||'(uten tittel)')}</div><div class="s">${esc(o.kunde||'')}</div><div class="chips"><span class="chip ${cls}">${esc(why)}</span></div></div></button>`).join('')}</div></div>`;
+  if(need.length)h+=`<div class="box"><h2>${t('Venter på deg')} <span class="pill hot">${need.length}</span></h2><div class="list">${need.slice(0,6).map(({o,why,cls})=>`<button class="card" data-open="${esc(o._id)}" style="--stripe:${stv(o.status)}"><div class="main"><div class="t">${esc(lbl(o))} ${esc(o.tittel||'(uten tittel)')}</div><div class="s">${esc(o.kunde||'')}</div><div class="chips"><span class="chip ${cls}">${esc(why)}</span></div></div></button>`).join('')}</div></div>`;
   /* Neste 7 dager */
   if(wk.length)h+=`<div class="box"><h2>Neste 7 dager</h2><ul class="log">${wk.slice(0,8).map(x=>`<li><span class="num">${esc(new Date(x.d+'T00:00:00').toLocaleDateString(LOCALE[LANG]||'nb-NO',{weekday:'short',day:'numeric'}))}</span><span style="flex:1">${x.ord?`<button class="lnk" data-open="${esc(x.ord)}">${esc(x.txt)}</button>`:esc(x.txt)}${x.sub?` <span class="help">· ${esc(x.sub)}</span>`:''}</span></li>`).join('')}</ul></div>`;
   /* Status som chips */
@@ -569,7 +576,7 @@ function vHjem(){const k=kpis();const i=inn();const hr=new Date().getHours();con
   const lg=Store.logg().slice(0,6);if(lg.length)h+=`<div class="box"><h2>Sist</h2><ul class="log">${lg.map(x=>`<li><span class="num">${esc(dmy(x.t.slice(0,10)))} ${esc(x.t.slice(11,16))}</span><span>${esc(x.txt)}</span></li>`).join('')}</ul></div>`;
   return h}
 
-function lbl(o){return '#'+String(o.nr||0).padStart(3,'0')}
+function lbl(o){if(!o.nr&&o.skId)return 'ARK';return '#'+String(o.nr||0).padStart(3,'0')}
 const NEXT={'Ny dialog':'Befaring','Befaring':'Tilbud under arbeid','Tilbud under arbeid':'Sendt tilbud','Sendt tilbud':'Skal utføres','Skal utføres':'Ferdig utført','Ferdig utført':'Avsluttet'};const nextStatus=s=>NEXT[s]||null;
 ICON.phone='<svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>';ICON.msg='<svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M4 5h16v11H8l-4 4z"/></svg>';ICON.pin='<svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';ICON.arrow='<svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const STCOL={'Ny dialog':'--st-ny','Befaring':'--st-bef','Tilbud under arbeid':'--st-tua','Sendt tilbud':'--st-sendt','Skal utføres':'--st-skal','Ferdig utført':'--st-ferdig','Oppfølging':'--st-oppf','Avsluttet':'--st-avs','Tapt':'--st-tapt'};
@@ -633,7 +640,9 @@ function readLines(){return [...document.querySelectorAll('#lines tbody tr')].ma
 function fBilder(o){return `<div class="box"><h2>Bilder <span class="pill">${S.photos.length}</span></h2><div class="photos" id="photos">${S.photos.map(p=>`<button type="button" class="ph" data-lb="${esc(p.id)}"><img src="${p.data}" alt="Bilde" loading="lazy"></button>`).join('')}<label class="add"><input type="file" accept="image/*" capture="environment" multiple data-photo>📷 Ta bilde</label><label class="add"><input type="file" accept="image/*" multiple data-photo>Velg fra bilder</label></div><p class="help" style="margin-top:10px">Bildene lagres på denne enheten. Pro synkroniserer mellom mobil og PC.</p></div>`}
 async function loadPhotos(){try{S.photos=await Photos.list(S.ord)}catch(e){S.photos=[]}const el=$('#photos');if(el&&S.ordTab==='bilder'){$('#main').innerHTML=vOrdrebok();translateDom($('#main'))}}
 
-function fNotat(o){return `<form id="notF" class="box" data-ord="${esc(o._id)}"><h2>Notater</h2>${f('Notater','notater',o.notater,{type:'textarea',full:1,ph:'Mål, avtaler med kunden, hva som ble sagt på telefon'})}<div class="actions"><button class="btn">Lagre</button></div></form>`}
+function fNotat(o){let h=`<form id="notF" class="box" data-ord="${esc(o._id)}"><h2>Notater</h2>${f('Notater','notater',o.notater,{type:'textarea',full:1,ph:'Mål, avtaler med kunden, hva som ble sagt på telefon'})}<div class="actions"><button class="btn">Lagre</button></div></form>`;
+  if(o.hist&&o.hist.length)h+=`<div class="box"><h2>${t('Historikk')} <span class="pill">${o.hist.length}</span></h2><ul class="log">${o.hist.slice().reverse().slice(0,60).map(x=>`<li><span class="num">${esc(x.t||'')}</span><span>${x.who?`<b>${esc(x.who)}</b> `:''}${esc(x.txt||'')}</span></li>`).join('')}</ul>${o.hist.length>60?`<p class="help">${t('Viser de 60 siste.')}</p>`:''}</div>`;
+  return h}
 
 function vPanel(){const d=S.panel;return `<div class="sheet"><div class="tools" style="margin-bottom:14px"><h1 style="flex:1">Ny ordre</h1><button class="btn sec sm" data-closepanel="1">Lukk</button></div><form id="newF"><div class="grid">${f('Prosjekt / tittel','tittel','',{full:1,ph:'F.eks. Bytte 4 vinduer, 2. etg.'})}${f('Kunde','kunde','',{ph:'Navn'})}${f('Telefon','telefon','',{type:'tel'})}${f('Adresse','adresse','',{full:1})}${f('Type','type',TYPER[0],{type:'select',opts:TYPER})}${f('Kundetype','kundetype','Privat',{type:'select',opts:['Privat','Bedrift/borettslag']})}${f('Befaringsdato','befaring','',{type:'date'})}${f('Beskrivelse','beskrivelse','',{type:'textarea',full:1,ph:'Hva skal gjøres? Kort er nok – resten kommer på befaringen.'})}</div><div class="actions"><button class="btn">Opprett ordre</button></div><p class="help" style="margin-top:8px">Status settes til «Ny dialog». Bruk «Neste» i mappen for å flytte jobben videre.</p></form></div>`}
 
@@ -955,7 +964,7 @@ function demo(){const i=inn();if(!i.onbDone){i.onbDone=true;Store.setInnst(i)}co
   Store.log('Eksempeldata lagt inn')}
 
 /* ===== v0.10: serviceavtaler, reklamasjonsvakt, bevispakke, værvarsel (met.no) ===== */
-const VER='v0.12';
+const VER='v0.13';
 FEAT.service='pro';FEAT.bevis='pro';
 const addMonths=(iso,n)=>{const d=new Date(iso+'T00:00:00');const day=d.getDate();d.setMonth(d.getMonth()+n);if(d.getDate()!==day)d.setDate(0);return isoD(d)};
 const addYears=(iso,n)=>iso?addMonths(iso,n*12):null;
