@@ -341,7 +341,7 @@ h1,h2,h3{letter-spacing:-.02em}
 </style>
 </head>
 <body>
-<header class="hdr"><span class="brand"><i></i>ORDRA<span class="ver">v0.11</span></span><nav class="tabsnav" id="tabsnav"></nav><span class="sp" id="sp"></span><button id="themeBtn" data-settheme="toggle" aria-label="Lys/mørk" style="background:none;border:1px solid #444;color:#fff;border-radius:999px;width:34px;height:34px;display:grid;place-items:center;flex:none;cursor:pointer"><svg class="i" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg></button></header>
+<header class="hdr"><span class="brand"><i></i>ORDRA<span class="ver">v0.12</span></span><nav class="tabsnav" id="tabsnav"></nav><span class="sp" id="sp"></span><button id="themeBtn" data-settheme="toggle" aria-label="Lys/mørk" style="background:none;border:1px solid #444;color:#fff;border-radius:999px;width:34px;height:34px;display:grid;place-items:center;flex:none;cursor:pointer"><svg class="i" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg></button></header>
 <main class="page" id="main"></main>
 <nav class="tabbar" id="nav"></nav>
 <div class="toast" id="toast" role="status"></div>
@@ -812,9 +812,9 @@ Object.assign(T_ALL.en,{"Takk! Abonnementet er aktivt.": "Thank you! Your subscr
 Object.assign(T_ALL.sv,{"Takk! Abonnementet er aktivt.": "Tack! Din prenumeration är aktiv.", "Du betaler ingenting de første 14 dagene, og du kan avslutte når som helst. Kvittering kommer på e-post fra Stripe.": "Du betalar inget de första 14 dagarna och kan avsluta när som helst. Kvitto kommer via e-post från Stripe.", "Kortbetaling via Stripe. Første 14 dager er gratis, og nivået låses opp automatisk når du kommer tilbake fra betalingen. Har du en kode?": "Kortbetalning via Stripe. De första 14 dagarna är gratis, och nivån låses upp automatiskt när du kommer tillbaka från betalningen. Har du en kod?", "Betaling": "Betalning"});
 Object.assign(T_ALL.da,{"Takk! Abonnementet er aktivt.": "Tak! Dit abonnement er aktivt.", "Du betaler ingenting de første 14 dagene, og du kan avslutte når som helst. Kvittering kommer på e-post fra Stripe.": "Du betaler intet de første 14 dage og kan opsige når som helst. Kvittering kommer på e-mail fra Stripe.", "Kortbetaling via Stripe. Første 14 dager er gratis, og nivået låses opp automatisk når du kommer tilbake fra betalingen. Har du en kode?": "Kortbetaling via Stripe. De første 14 dage er gratis, og niveauet låses op automatisk, når du kommer tilbage fra betalingen. Har du en kode?", "Betaling": "Betaling"});
 Object.assign(T_ALL.de,{"Takk! Abonnementet er aktivt.": "Danke! Dein Abo ist aktiv.", "Du betaler ingenting de første 14 dagene, og du kan avslutte når som helst. Kvittering kommer på e-post fra Stripe.": "Die ersten 14 Tage zahlst du nichts und kannst jederzeit kündigen. Die Quittung kommt per E-Mail von Stripe.", "Kortbetaling via Stripe. Første 14 dager er gratis, og nivået låses opp automatisk når du kommer tilbake fra betalingen. Har du en kode?": "Kartenzahlung über Stripe. Die ersten 14 Tage sind kostenlos, und die Stufe wird automatisch freigeschaltet, wenn du von der Zahlung zurückkommst. Hast du einen Code?", "Betaling": "Zahlung"});
-const STRIPE_LINKS={pro:'https://buy.stripe.com/test_bJe4gz4imdeV6iY2vI1oI02',ai:'https://buy.stripe.com/test_fZu5kDdSW2AhdLq2vI1oI00',drift:'https://buy.stripe.com/test_cNi28r9CG3El8r65HU1oI01'};
+const STRIPE_LINKS={pro:'https://buy.stripe.com/7sY7sL4ima2JgXC2vI1oI03',ai:'https://buy.stripe.com/fZu5kDdSW2AhdLq2vI1oI00',drift:'https://buy.stripe.com/cNi28r9CG3El8r65HU1oI01'};
 const devId=()=>{let d=localStorage.getItem('ordra.dev');if(!d){d='d_'+Math.random().toString(36).slice(2,10)+Date.now().toString(36);localStorage.setItem('ordra.dev',d)}return d};
-const KODER={'PRO-TEST-2026':'pro','AI-TEST-2026':'ai','DRIFT-TEST-2026':'drift'};
+const KODER={'ORDRA-EIER-2026':'drift'};
 
 /* ===== PDF ===== */
 function makePdf(o,mode){const {jsPDF}=window.jspdf;const i=inn();const d=new jsPDF({unit:'mm',format:'a4'});const s=sumTilbud(o);const L=20;let y=20;const TITLE=mode==='faktura'?t('Fakturagrunnlag'):t('Tilbud');const privat=(o.kundetype||'Privat')==='Privat';const hjemme=(o.avtalested||'På befaring hos kunden')==='På befaring hos kunden';const pt=o.pristype||'Fastpris';
@@ -955,7 +955,7 @@ function demo(){const i=inn();if(!i.onbDone){i.onbDone=true;Store.setInnst(i)}co
   Store.log('Eksempeldata lagt inn')}
 
 /* ===== v0.10: serviceavtaler, reklamasjonsvakt, bevispakke, værvarsel (met.no) ===== */
-const VER='v0.11';
+const VER='v0.12';
 FEAT.service='pro';FEAT.bevis='pro';
 const addMonths=(iso,n)=>{const d=new Date(iso+'T00:00:00');const day=d.getDate();d.setMonth(d.getMonth()+n);if(d.getDate()!==day)d.setDate(0);return isoD(d)};
 const addYears=(iso,n)=>iso?addMonths(iso,n*12):null;
