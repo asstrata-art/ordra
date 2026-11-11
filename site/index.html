@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ordra – the order book for tradespeople</title>
+<meta name="description" content="Quotes, site visits, photos, hours, checklists and proof – one folder per job, on your phone. Free to start. Built by a tradesman.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#f7f7f5;--paper:#fff;--ink:#0f1115;--muted:#5c5c5a;--faint:#8a8a86;--line:#e2e2e2;--accent:#ff6a00;--ok:#1f7a4d;--ok-bg:#e3f3ea;--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--r:18px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:700}
+h1{font-size:clamp(34px,6vw,64px)}
+h2{font-size:clamp(26px,4vw,40px)}
+h3{font-size:18px;font-weight:700}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;padding:13px 22px;font-weight:700;text-decoration:none;font-size:15px;cursor:pointer}
+.btn.acc{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.lg{padding:16px 28px;font-size:17px}
+/* header */
+.hdr{position:sticky;top:0;z-index:10;background:#111;color:#fff}
+.hdr .wrap{display:flex;align-items:center;gap:24px;padding:14px 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.16em;font-size:13px;text-decoration:none}
+.brand i{width:12px;height:12px;background:var(--accent);border-radius:2px;transform:rotate(12deg)}
+.nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.nav a{color:#bdbdbd;text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:999px}
+.nav a:hover{color:#fff}
+.nav a.cta{background:#fff;color:#111}
+@media(max-width:720px){.nav a:not(.cta){display:none}}
+.draft{background:#fff1e8;color:#b4530a;text-align:center;font-size:13px;font-weight:600;padding:8px 12px}
+/* hero */
+.hero{padding:72px 0 48px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:520px;margin:18px 0 28px}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero .fine{margin-top:14px;font-size:13px;color:var(--faint)}
+.phone{background:#111;border-radius:36px;padding:14px;box-shadow:0 30px 60px rgba(0,0,0,.18);max-width:360px;margin:0 auto;width:100%}
+.screen{background:var(--paper);border-radius:26px;overflow:hidden;font-size:13px}
+.screen .bar{background:#111;color:#fff;padding:12px 16px;font-weight:800;letter-spacing:.14em;font-size:11px;display:flex;align-items:center;gap:8px}
+.screen .bar i{width:9px;height:9px;background:var(--accent);border-radius:2px;transform:rotate(12deg)}
+.screen .body{padding:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+.card b{display:block;font-size:14px}
+.chip{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#eeeeeb;color:#2a2a2a;margin-top:6px}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.acc{background:#fff1e8;color:#b4530a}
+.kpi{display:flex;gap:8px;margin-bottom:12px}
+.kpi div{flex:1;background:#f1f1ee;border-radius:12px;padding:10px}
+.kpi .n{font-size:20px;font-weight:800}
+.kpi .l{font-size:11px;color:var(--muted)}
+/* sections */
+section{padding:72px 0}
+section.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-head{max-width:640px;margin-bottom:36px}
+.sec-head h2{margin:10px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.feat{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+section.alt .feat{background:var(--bg)}
+.feat .ic{width:40px;height:40px;border-radius:12px;background:#fff1e8;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.feat svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat h3{margin-bottom:6px}
+.feat p{color:var(--muted);font-size:15px}
+.tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-top:12px;display:block}
+.tag.pro{color:var(--accent)}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
+@media(max-width:720px){.steps{grid-template-columns:1fr}}
+.step{padding:24px;border-radius:var(--r);background:var(--paper);border:1px solid var(--line)}
+.step .n{font-size:40px;font-weight:800;color:var(--accent);line-height:1}
+.step h3{margin:10px 0 6px}
+.step p{color:var(--muted);font-size:15px}
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:960px){.plans{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column}
+.plan.hot{border-color:var(--accent);box-shadow:0 0 0 3px #fff1e8}
+.plan .pn{font-weight:700;font-size:15px}
+.plan .pz{font-size:30px;font-weight:800;margin:8px 0 2px;letter-spacing:-.02em}
+.plan .pz small{font-size:14px;font-weight:600;color:var(--muted)}
+.plan .pf{font-size:13px;color:var(--faint);margin-bottom:14px}
+.plan ul{margin:0 0 18px;padding:0;list-style:none;font-size:14px;color:var(--muted);flex:1}
+.plan li{padding:5px 0 5px 22px;position:relative}
+.plan li:before{content:"";position:absolute;left:2px;top:12px;width:10px;height:5px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg)}
+.plan .btn{justify-content:center}
+.cur{display:inline-block;font-size:11px;font-weight:700;background:#fff1e8;color:#b4530a;padding:3px 9px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.curr{display:flex;gap:6px;margin-bottom:22px}
+.curr button{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;cursor:pointer}
+.curr button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* quote */
+.quote{background:#111;color:#fff;border-radius:28px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+@media(max-width:860px){.quote{grid-template-columns:1fr;padding:32px}}
+.quote h2{color:#fff}
+.quote p{color:#bdbdbd;font-size:17px}
+.quote .who{color:#fff;font-weight:700;margin-top:18px}
+/* faq */
+.faq{max-width:760px}
+details{border-top:1px solid var(--line);padding:18px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary:after{content:"+";color:var(--accent);font-weight:800}
+details[open] summary:after{content:"–"}
+details p{color:var(--muted);margin-top:10px;max-width:640px}
+/* footer */
+footer{background:#111;color:#9a9a9a;padding:48px 0 32px;font-size:14px}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+@media(max-width:720px){footer .wrap{grid-template-columns:1fr 1fr}}
+footer h4{color:#fff;margin:0 0 10px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+footer a{display:block;color:#9a9a9a;text-decoration:none;padding:3px 0}
+footer a:hover{color:#fff}
+footer .legal{grid-column:1/-1;border-top:1px solid #2a2a2a;padding-top:20px;margin-top:12px;font-size:12px;color:#6e6e6e}
+.lang{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.lang span{border:1px solid #333;border-radius:999px;padding:3px 10px;font-size:12px;color:#bdbdbd}
+.lang span.on{background:#fff;color:#111;border-color:#fff}
+</style>
+</head>
+<body>
+
+<div class="draft">DRAFT – for Niclas' approval. Prices, trial length and the customer quote are placeholders until confirmed.</div>
+
+<header class="hdr"><div class="wrap">
+  <a class="brand" href="#"><i></i>ORDRA</a>
+  <nav class="nav">
+    <a href="#features">Features</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+    <a class="cta" href="https://asstrata-art.github.io/ordra/">Open the app</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow">Free order book for tradespeople</span>
+    <h1>One job.<br>One folder.</h1>
+    <p class="lead">Quotes, site visits, photos, hours, safety checklists and proof – everything for a job in one place, on the phone you already carry. Free to start. Pro when you grow.</p>
+    <div class="actions">
+      <a class="btn acc lg" href="https://asstrata-art.github.io/ordra/">Start free – no sign-up</a>
+      <a class="btn ghost lg" href="#features">See what's inside</a>
+    </div>
+    <p class="fine">Works on iPhone, Android and desktop. Add it to your home screen and it runs like an app. Your data stays on your device until you choose to sync.</p>
+  </div>
+  <div class="phone"><div class="screen">
+    <div class="bar"><i></i>ORDRA</div>
+    <div class="body">
+      <div class="kpi"><div><div class="n">7</div><div class="l">Active jobs</div></div><div><div class="n">2</div><div class="l">Quotes to follow up</div></div><div><div class="n">1</div><div class="l">Site visit today</div></div></div>
+      <div class="card"><b>Bathroom renovation – Hansen</b><span class="muted">Storgata 12 · Quote sent 5 days ago</span><br><span class="chip acc">Follow up</span> <span class="chip">☔ Rain Thursday</span></div>
+      <div class="card"><b>Rewiring – Berg Dental</b><span class="muted">Site visit 09:00 · 3 photos · 2.5 h</span><br><span class="chip ok">In progress</span></div>
+      <div class="card"><b>Annual boiler service – Lund</b><span class="muted">Service agreement · due in 14 days</span><br><span class="chip">Create job</span></div>
+    </div>
+  </div></div>
+</div></section>
+
+<section id="features" class="alt"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">What's inside</span><h2>Everything a job needs, nothing an office needs</h2><p class="muted">Built by a tradesman who was tired of SMS threads, camera rolls and paper timesheets. Not by a software company.</p></div>
+  <div class="grid">
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h12l4 4v12H4z"/><path d="M8 12h8M8 16h5"/></svg></div><h3>Quotes in 40 seconds</h3><p>Lines, VAT, validity date and your logo. Share as PDF or link. The app tells you when it's time to follow up.</p><span class="tag">Free</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M12 11v10M3 7l9 4 9-4"/></svg></div><h3>One folder per job</h3><p>Customer, address, quote, photos, notes, hours and documents – together. Call, text or navigate with one tap.</p><span class="tag">Free</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><circle cx="12" cy="13" r="3"/><path d="M9 7l1.5-3h3L15 7"/></svg></div><h3>Photos with date and job</h3><p>Before, during, after. Each photo is stamped and stored on the job – not lost among 400 others in your camera roll.</p><span class="tag">Free</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7H4V5h11"/></svg></div><h3>Site visits with checklist</h3><p>Measure, tick, photograph. The customer gets a tidy site-visit report, and the quote builds on it.</p><span class="tag pro">Pro</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Hours and timesheets</h3><p>Start/stop per job, per employee. Export CSV for payroll and invoicing. No more Friday paper hunt.</p><span class="tag pro">Pro</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16v14H4z"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></div><h3>Calendar with weather</h3><p>Site visits, jobs and follow-ups in one week view – with the forecast on every outdoor job, so you move the roofing day before Thursday's rain does.</p><span class="tag pro">Pro</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Safety & quality (QA/HSE)</h3><p>Risk assessment, self-inspection, deviations and handover docs on the phone – signed, dated, exported as one QA report.</p><span class="tag pro">Pro</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v6h6M9 13h6M9 17h6"/></svg></div><h3>Proof pack</h3><p>One PDF with the quote, site visit, hours, checklists, notes, event log and every photo with its date. The document that settles a dispute three years later.</p><span class="tag pro">Pro</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 8v4l2 2"/><circle cx="12" cy="12" r="9"/><path d="M5 3L2 6M19 3l3 3"/></svg></div><h3>Warranty watch</h3><p>Tracks the statutory complaint period from the day you finished – and reminds you of the one-year check-up that turns into repeat work.</p><span class="tag">Free</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1018 0 9 9 0 00-18 0z"/><path d="M8 12h8M12 8v8"/></svg></div><h3>Service agreements</h3><p>Yearly boiler service, 6-month inspections – set the interval once. The app reminds you, creates the job pre-filled, and moves the next date.</p><span class="tag pro">Pro</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12z"/><path d="M9 21v-7h6v7"/></svg></div><h3>Permit applications</h3><p>Which works need a permit, which are exempt, neighbour notices and the application basis – generated from the job. (Norway first; more countries coming.)</p><span class="tag pro">Pro</span></div>
+    <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></div><h3>Consumer-law compliant</h3><p>Cancellation forms, price-estimate limits and invoice basis handled for you, so quotes to private customers hold up.</p><span class="tag">Free</span></div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">How it works</span><h2>Three steps. The third one is yours.</h2></div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Open the link</h3><p>No account, no app store, no card. Add Ordra to your home screen and it runs full-screen like any app – also offline.</p></div>
+    <div class="step"><div class="n">2</div><h3>Create a job</h3><p>Customer, address, what's to be done. Take photos, write the quote, send it. Everything lands in the job folder.</p></div>
+    <div class="step"><div class="n">3</div><h3>Do the work</h3><p>Ordra handles the follow-ups, deadlines and documents. When your team grows, upgrade to Pro – your data comes with you.</p></div>
+  </div>
+</div></section>
+
+<section id="pricing" class="alt"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">Pricing</span><h2>Free until you want more</h2><p class="muted">Per company, per month, excl. VAT. No lock-in. Cancel any time.</p></div>
+  <div class="curr"><button class="on" data-cur="NOK">NOK</button><button data-cur="EUR">EUR</button><button data-cur="GBP">GBP</button><button data-cur="SEK">SEK</button><button data-cur="DKK">DKK</button></div>
+  <div class="plans">
+    <div class="plan"><div class="pn">Free</div><div class="pz">0</div><div class="pf">1 user · forever</div><ul><li>Order book and job folders</li><li>Quotes with PDF and logo-free sharing</li><li>Photos and notes</li><li>Customers and quick actions</li><li>Warranty watch</li><li>Consumer-law documents</li></ul><a class="btn ghost" href="https://asstrata-art.github.io/ordra/">Start free</a></div>
+    <div class="plan hot"><div class="pn">Pro <span class="cur">Most popular</span></div><div class="pz"><span data-p="249">249</span> <small>/ month</small></div><div class="pf">Up to 3 users · +<span data-p="99">99</span> per extra user</div><ul><li>Everything in Free</li><li>Site visits with checklists</li><li>Hours and timesheets (CSV)</li><li>Calendar with weather</li><li>QA/HSE and proof pack</li><li>Service agreements</li><li>Permit applications</li><li>Your logo on every document</li><li>Sync between devices</li></ul><a class="btn acc" href="https://asstrata-art.github.io/ordra/">Try Pro free for 14 days</a></div>
+    <div class="plan"><div class="pn">AI</div><div class="pz"><span data-p="790">790</span> <small>/ month</small></div><div class="pf">Everything in Pro · coming 2027</div><ul><li>AI writes quotes from your site-visit notes</li><li>Agents that follow up customers, chase deadlines and prepare invoices</li><li>You approve – nothing is sent without you</li><li>Your own assistant that knows your jobs</li></ul><a class="btn ghost" href="mailto:hei@ordra.no?subject=AI%20waitlist">Join the waitlist</a></div>
+    <div class="plan"><div class="pn">Operations</div><div class="pz"><span data-p="2490">2 490</span> <small>/ month</small></div><div class="pf">+ setup · for serious firms</div><ul><li>Everything in AI</li><li>Set up for your company, your templates, your routines</li><li>Phone and messages answered by your assistant</li><li>Priority support, quarterly review</li></ul><a class="btn ghost" href="mailto:hei@ordra.no?subject=Operations">Talk to us</a></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="quote">
+    <div><span class="eyebrow">Why Ordra exists</span><h2 style="margin-top:10px">I lost a 38 000 kr quote in a text thread. Once.</h2></div>
+    <div><p>“I run a small contracting business. Every office tool I tried was built for someone sitting at a desk. I needed one folder per job that fits in my pocket, tells me when to follow up, and proves what I did when a customer forgets. So we built it – and the basic version is free because every tradesperson should have it.”</p><p class="who">Niclas, founder · <span class="muted">[quote draft – to be approved]</span></p></div>
+  </div>
+</div></section>
+
+<section id="faq" class="alt"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">FAQ</span><h2>What people ask</h2></div>
+  <div class="faq">
+    <details open><summary>Is it really free?</summary><p>Yes. The Free plan has no time limit and no card. It covers what a one-person business needs: jobs, quotes, photos, customers and the consumer-law documents. Pro adds the team and documentation features.</p></details>
+    <details><summary>Do I need to install anything?</summary><p>No. Open the link in Safari or Chrome and choose “Add to Home Screen”. It then opens full-screen, works offline and gets updates automatically. App Store and Google Play versions follow.</p></details>
+    <details><summary>Where is my data?</summary><p>On your device, by default. Nothing is uploaded until you turn on sync (Pro). Export everything as PDF or CSV at any time – your data is yours.</p></details>
+    <details><summary>Which countries and languages?</summary><p>Norwegian, English, Swedish, Danish and German from day one, with currency of your choice. Legal documents are Norway-first; UK, Swedish, Danish and German versions are on the roadmap.</p></details>
+    <details><summary>Does it replace my accounting software?</summary><p>No – and it shouldn't. Ordra produces the invoice basis with everything the bookkeeper needs; your accounting system issues the invoice. Direct integrations are coming.</p></details>
+    <details><summary>What about the AI features?</summary><p>They're being built. Every AI action lands in an approval queue – a quote draft, a follow-up message, an invoice basis – and nothing leaves the app until you tap approve.</p></details>
+  </div>
+</div></section>
+
+<section><div class="wrap" style="text-align:center">
+  <h2>Start your first job folder today</h2>
+  <p class="muted" style="margin:12px 0 24px">Free, no sign-up, two minutes.</p>
+  <a class="btn acc lg" href="https://asstrata-art.github.io/ordra/">Open Ordra</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div><a class="brand" href="#" style="color:#fff"><i></i>ORDRA</a><p style="margin-top:12px;max-width:320px">The order book for tradespeople. Built in Norway, made for every trade.</p>
+    <div class="lang"><span class="on">EN</span><span>NO</span><span>SV</span><span>DA</span><span>DE</span></div></div>
+  <div><h4>Product</h4><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="https://asstrata-art.github.io/ordra/">Open the app</a></div>
+  <div><h4>Company</h4><a href="mailto:hei@ordra.no">hei@ordra.no</a><a href="#">About</a><a href="#">Suggest a feature</a></div>
+  <div><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Imprint</a></div>
+  <div class="legal">© 2026 Ordra · Operated by [company name, org. no. – to be filled in] · Weather data: MET Norway. Prices excl. VAT. Currency conversions are approximate.</div>
+</div></footer>
+
+<script>
+const RATES={NOK:1,EUR:1/11.7,GBP:1/13.6,SEK:0.95,DKK:1/1.57};
+const FMT={NOK:v=>Math.round(v)+' kr',EUR:v=>'€'+Math.round(v),GBP:v=>'£'+Math.round(v),SEK:v=>Math.round(v)+' kr',DKK:v=>Math.round(v)+' kr'};
+document.querySelectorAll('[data-cur]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-cur]').forEach(x=>x.classList.toggle('on',x===b));
+  const c=b.dataset.cur;document.querySelectorAll('[data-p]').forEach(el=>{el.textContent=FMT[c](+el.dataset.p*RATES[c])});
+}));
+</script>
+</body>
+</html>
