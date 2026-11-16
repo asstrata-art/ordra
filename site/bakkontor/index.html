@@ -3,221 +3,276 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ordra Bakkontor – kontoret som tar telefonen</title>
+<title>Ordra – KS- og ordresystem for håndverksbedrifter</title>
 <link rel="canonical" href="https://asstrata-art.github.io/ordra/site/bakkontor/">
 <link rel="icon" href="../../icon-192.png">
-<meta property="og:title" content="Ordra Bakkontor – kontoret som tar telefonen">
-<meta property="og:description" content="AI-resepsjonist for håndverkere. Hør en samtale på ett minutt.">
-<meta name="description" content="AI-bakkontor for håndverkere: tar telefonen, booker befaring, skriver tilbud og følger opp. Du godkjenner med ett trykk.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<meta property="og:title" content="Ordra – KS- og ordresystem for håndverksbedrifter">
+<meta property="og:description" content="Ordre, befaring, tilbud, timer, egenkontroll og dokumentasjon i én mappe per jobb. Velg selv hvor mye AI skal gjøre.">
+<meta name="description" content="Ordra er et KS- og ordresystem for håndverksbedrifter. Bruk det gratis selv, få hjelp av AI til deler av kontorarbeidet, eller la AI drive bakkontoret. Du godkjenner alt.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-:root{--bg:#f7f7f5;--paper:#fff;--ink:#0f1115;--muted:#5c5c5a;--faint:#8a8a86;--line:#e2e2e2;--accent:#ff6a00;--ok:#1f7a4d;--ok-bg:#e3f3ea;--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--r:18px}
+:root{
+  --paper:#ffffff; --band:#f1f4f7; --ink:#16202b; --text:#2c3844; --muted:#5d6975;
+  --rule:#d3d9e0; --blue:#1f4e8c; --blue-dark:#173b6a; --mark:#ff6a00; --ok:#1d6b45;
+  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
-a{color:inherit}
-h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:700}
-h1{font-size:clamp(34px,6vw,60px)}
-h2{font-size:clamp(26px,4vw,38px)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--text);font:400 17px/1.6 var(--font);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+h1,h2,h3{color:var(--ink);font-weight:600;margin:0;line-height:1.2}
+h1{font-size:clamp(30px,5.2vw,46px);letter-spacing:-.015em}
+h2{font-size:clamp(23px,3.2vw,30px);letter-spacing:-.01em}
 h3{font-size:18px}
-p{margin:0}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.muted{color:var(--muted)}
-.btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;padding:13px 22px;font-weight:700;text-decoration:none;font-size:15px}
-.btn.acc{background:var(--accent);border-color:var(--accent)}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn.lg{padding:16px 28px;font-size:17px}
-.hdr{position:sticky;top:0;z-index:10;background:#111;color:#fff}
-.hdr .wrap{display:flex;align-items:center;gap:24px;padding:14px 20px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.16em;font-size:13px;text-decoration:none}
-.brand i{width:12px;height:12px;background:var(--accent);border-radius:2px;transform:rotate(12deg)}
-.nav{margin-left:auto;display:flex;gap:4px;align-items:center}
-.nav a{color:#bdbdbd;text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:999px}
-.nav a.cta{background:#fff;color:#111}
-@media(max-width:720px){.nav a:not(.cta){display:none}}
-.hero{padding:64px 0 44px}
-.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
-@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
-.lead{font-size:19px;color:var(--muted);max-width:540px;margin:18px 0 28px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-.fine{margin-top:14px;font-size:13px;color:var(--faint)}
-.phone{background:#111;border-radius:36px;padding:14px;box-shadow:0 30px 60px rgba(0,0,0,.18);max-width:350px;margin:0 auto;width:100%}
-.screen{background:var(--paper);border-radius:26px;overflow:hidden;font-size:13px}
-.bar{background:#111;color:#fff;padding:12px 16px;font-weight:800;letter-spacing:.14em;font-size:11px;display:flex;align-items:center;gap:8px}
-.bar i{width:9px;height:9px;background:var(--accent);border-radius:2px;transform:rotate(12deg)}
-.body{padding:14px}
-.card{border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
-.card b{display:block;font-size:14px}
-.card span.t{color:var(--muted)}
-.chip{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#eeeeeb;margin-top:6px}
-.chip.ok{background:var(--ok-bg);color:var(--ok)}
-.chip.acc{background:#fff1e8;color:#b4530a}
-.demo-tag{font-size:11px;color:var(--faint);text-align:center;margin-top:8px}
-section{padding:64px 0}
-section.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.sec-head{max-width:640px;margin-bottom:32px}
-.sec-head h2{margin:10px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:860px){.grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}}
-.feat{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
-section.alt .feat{background:var(--bg)}
-.feat .n{font-size:13px;font-weight:800;color:var(--accent);margin-bottom:10px}
-.feat h3{margin-bottom:6px}
-.feat p{color:var(--muted);font-size:15px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:760px){.steps{grid-template-columns:1fr}}
-.plans{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:820px}
-@media(max-width:700px){.plans{grid-template-columns:1fr}}
-.plan{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px}
-.plan.main{border:2px solid var(--ink)}
-.price{font-size:40px;font-weight:800;letter-spacing:-.03em;margin:10px 0 2px}
-.price small{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0}
-.plan ul{list-style:none;padding:0;margin:16px 0 22px}
-.plan li{padding:7px 0 7px 26px;position:relative;font-size:15px;border-top:1px solid var(--line)}
-.plan li:before{content:"";position:absolute;left:4px;top:14px;width:10px;height:6px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg)}
-.faq{max-width:760px}
-.faq details{border-top:1px solid var(--line);padding:16px 0}
-.faq summary{font-weight:700;cursor:pointer}
-.faq p{color:var(--muted);margin-top:8px}
-.cta-box{background:#111;color:#fff;border-radius:24px;padding:40px 28px;text-align:center}
-.cta-box p{color:#bdbdbd;margin:12px auto 24px;max-width:520px}
-.cta-box .mail{display:block;margin-top:14px;font-size:14px;color:#bdbdbd}
-footer{padding:28px 0 40px;font-size:13px;color:var(--faint)}
+p{margin:0 0 14px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+.narrow{max-width:680px}
+
+/* header */
+.top{border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding:16px 22px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:19px;color:var(--ink);text-decoration:none}
+.logo i{width:13px;height:13px;background:var(--mark);border-radius:2px}
+.menu{margin-left:auto;display:flex;gap:22px;align-items:center;font-size:15px}
+.menu a{color:var(--text);text-decoration:none}
+.menu a:hover{color:var(--blue)}
+.menu a.app{color:var(--blue);font-weight:500}
+@media(max-width:760px){.menu a:not(.app){display:none}}
+
+/* buttons */
+.btn{display:inline-block;padding:12px 20px;border-radius:4px;font-weight:500;font-size:16px;text-decoration:none;border:1px solid var(--blue);background:var(--blue);color:#fff}
+.btn:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+.btn.plain{background:#fff;color:var(--blue)}
+.btn.plain:hover{background:var(--band)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+
+/* hero */
+.hero{padding:56px 0 60px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+@media(max-width:880px){.hero .wrap{grid-template-columns:1fr;gap:36px}}
+.lead{font-size:19px;margin-top:18px;max-width:560px}
+.small{font-size:14.5px;color:var(--muted)}
+
+/* egenkontroll-skjema */
+.form{border:1px solid var(--ink);background:#fff;font-size:14.5px;line-height:1.4;max-width:420px}
+.form header{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--ink);font-weight:600;color:var(--ink)}
+.form header span:last-child{font-weight:400;color:var(--muted)}
+.form dl{display:grid;grid-template-columns:auto 1fr;margin:0;border-bottom:1px solid var(--rule)}
+.form dt,.form dd{margin:0;padding:6px 14px;border-bottom:1px solid var(--rule)}
+.form dt{color:var(--muted)}
+.form dl> :nth-last-child(-n+2){border-bottom:0}
+.form ul{list-style:none;margin:0;padding:0}
+.form li{display:flex;gap:10px;align-items:flex-start;padding:8px 14px;border-bottom:1px solid var(--rule)}
+.form li:last-child{border-bottom:0}
+.box{flex:0 0 16px;height:16px;border:1.5px solid var(--ink);margin-top:2px;position:relative}
+.box.on:after{content:"";position:absolute;left:3px;top:0;width:5px;height:9px;border:solid var(--ok);border-width:0 2px 2px 0;transform:rotate(40deg)}
+.form footer{display:flex;justify-content:space-between;gap:10px;padding:9px 14px;border-top:1px solid var(--ink);color:var(--muted)}
+.cap{margin:10px 0 0;font-size:13.5px;color:var(--muted);max-width:420px}
+
+/* sections */
+.sec{padding:60px 0;border-top:1px solid var(--rule)}
+.sec.band{background:var(--band)}
+.sec h2{margin-bottom:14px}
+.intro{max-width:680px;margin-bottom:30px}
+
+/* systemet: definisjonsliste */
+.parts{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;margin:0}
+@media(max-width:760px){.parts{grid-template-columns:1fr}}
+.parts div{padding:16px 0;border-top:1px solid var(--rule)}
+.parts dt{font-weight:600;color:var(--ink);margin-bottom:3px}
+.parts dd{margin:0;font-size:16px}
+
+/* nivåtabell */
+.levels{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--ink);font-size:15.5px}
+.levels th,.levels td{padding:11px 12px;border-bottom:1px solid var(--rule);text-align:center;vertical-align:middle}
+.levels th:first-child,.levels td:first-child{text-align:left}
+.levels thead th{border-bottom:1px solid var(--ink);color:var(--ink);font-weight:600;vertical-align:bottom;line-height:1.25}
+.levels thead small{display:block;font-weight:400;color:var(--muted);font-size:13.5px;margin-top:3px}
+.levels tbody tr:last-child td{border-bottom:0}
+.levels .grp td{background:var(--band);font-weight:600;color:var(--ink);text-align:left;font-size:14.5px}
+.levels .price td{border-top:1px solid var(--ink);font-weight:600;color:var(--ink)}
+.levels .price small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.tick{display:inline-block;width:6px;height:11px;border:solid var(--ok);border-width:0 2px 2px 0;transform:rotate(40deg)}
+.dash{color:#aab3bc}
+.who{font-size:13.5px;color:var(--muted)}
+@media(max-width:620px){.levels{font-size:14px}.levels th,.levels td{padding:9px 7px}}
+
+/* steg */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;max-width:760px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:6px;padding:16px 0;border-top:1px solid var(--rule)}
+.steps li:before{content:counter(s);font-weight:600;color:var(--blue);font-size:20px;line-height:1.3}
+.steps h3{margin-bottom:3px}
+.steps p{margin:0;font-size:16px}
+
+/* to kolonner */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media(max-width:760px){.two{grid-template-columns:1fr;gap:28px}}
+.plainlist{margin:0;padding-left:20px}
+.plainlist li{margin-bottom:6px}
+
+.faq details{border-top:1px solid var(--rule);padding:14px 0;max-width:760px}
+.faq summary{font-weight:500;color:var(--ink);cursor:pointer}
+.faq p{margin:8px 0 0}
+
+.contact{font-size:19px}
+footer.end{border-top:1px solid var(--rule);padding:24px 0 40px;font-size:14px;color:var(--muted)}
 </style>
 </head>
 <body>
-<header class="hdr"><div class="wrap">
-  <a class="brand" href="../"><i></i>ORDRA</a>
-  <nav class="nav">
-    <a href="#demo">Hør demo</a>
-    <a href="#slik">Slik virker det</a>
-    <a href="#pris">Pris</a>
-    <a href="#app">Appen</a>
-    <a href="#sporsmal">Spørsmål</a>
-    <a class="cta" href="#start">Få pilotplass</a>
+
+<div class="top"><div class="wrap">
+  <a class="logo" href="./"><i></i>Ordra</a>
+  <nav class="menu">
+    <a href="#systemet">Systemet</a>
+    <a href="#nivaer">Nivåer og pris</a>
+    <a href="#oppstart">Oppstart</a>
+    <a href="#kurs">Kurs</a>
+    <a href="#kontakt">Kontakt</a>
+    <a class="app" href="https://asstrata-art.github.io/ordra/">Åpne appen</a>
   </nav>
-</div></header>
+</div></div>
 
 <section class="hero"><div class="wrap">
   <div>
-    <span class="eyebrow">Ordra Bakkontor · for håndverkere</span>
-    <h1 style="margin-top:12px">Kontoret som tar telefonen mens du jobber.</h1>
-    <p class="lead">En AI-resepsjonist svarer kundene dine på norsk, booker befaring, skriver tilbudet og følger det opp. Du godkjenner med ett trykk på mobilen.</p>
-    <div class="actions">
-      <a class="btn acc lg" href="#start">Få pilotplass</a>
-      <a class="btn ghost lg" href="#demo">Hør en samtale</a>
+    <h1>KS- og ordresystem for håndverksbedrifter</h1>
+    <p class="lead">Ordra samler ordre, befaring, tilbud, timer, egenkontroll og dokumentasjon i én mappe per jobb. Du bruker det selv, gratis. Vil du ha avlastning, kan AI ta deler av kontorarbeidet eller hele bakkontoret. Du velger nivået, og vi tilpasser det til måten dere jobber på.</p>
+    <div class="row">
+      <a class="btn" href="https://asstrata-art.github.io/ordra/">Åpne appen gratis</a>
+      <a class="btn plain" href="#kontakt">Snakk med oss om pilot</a>
     </div>
-    <p class="fine">14 dager gratis · ingen bindingstid · gratis oppsett for de 10 første</p>
+    <p class="small" style="margin-top:16px">Appen åpnes i nettleseren og kan legges på Hjem-skjermen. Ingen konto eller kort for å starte.</p>
   </div>
   <div>
-    <div class="phone"><div class="screen">
-      <div class="bar"><i></i>ORDRA · TIL GODKJENNING</div>
-      <div class="body">
-        <div class="card"><b>Ny henvendelse · 14:12</b><span class="t">Lekkasje under kjøkkenvask. Kunden ønsker besøk så fort som mulig.</span><br><span class="chip acc">Haster</span></div>
-        <div class="card"><b>Befaring foreslått</b><span class="t">I morgen kl. 08:00. SMS til kunden er klar.</span><br><span class="chip ok">Godkjenn</span> <span class="chip">Endre</span></div>
-        <div class="card" style="margin-bottom:0"><b>Tilbud ubesvart i 3 dager</b><span class="t">Påminnelse til kunden er skrevet.</span><br><span class="chip ok">Send</span> <span class="chip">Vent</span></div>
-      </div>
-    </div></div>
-    <p class="demo-tag">Eksempel på skjermbilde</p>
-  </div>
-</div></section>
-
-<section id="demo" style="padding:0 0 56px"><div class="wrap">
-  <div class="feat" style="max-width:760px;padding:26px">
-    <span class="eyebrow">Hør den selv · 1,5 minutt</span>
-    <h2 style="margin:10px 0 10px;font-size:clamp(22px,3.4vw,30px)">En kunde ringer om lekkasje. Rørleggeren er opptatt.</h2>
-    <p class="muted" style="margin-bottom:16px">Opptak av en testsamtale på telefon. Firmanavnet og kundens navn og adresse er oppdiktet. Samtalen er ikke klippet.</p>
-    <audio controls preload="none" style="width:100%" src="demo.mp3"></audio>
-    <p class="fine">Vil du teste med ditt eget firmanavn? Send en e-post, så ringer den deg opp.</p>
-  </div>
-</div></section>
-<section class="alt" id="hva"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow">Hva du får</span>
-    <h2>Seks jobber du slipper å gjøre på kvelden.</h2>
-    <p class="muted">Når du står på en jobb og telefonen ringer, går kunden ofte videre til neste på lista. Bakkontoret tar den, og resten av papirarbeidet etterpå.</p>
-  </div>
-  <div class="grid">
-    <div class="feat"><div class="n">01</div><h3>Telefonen blir tatt</h3><p>AI svarer når du ikke kan, sier at den er en AI, og noterer hva jobben gjelder.</p></div>
-    <div class="feat"><div class="n">02</div><h3>SMS ved tapt anrop</h3><p>Kunden får melding innen ett minutt med lenke til å beskrive jobben og legge ved bilder.</p></div>
-    <div class="feat"><div class="n">03</div><h3>Befaring i kalenderen</h3><p>Forslag til tidspunkt legges klart. Du bekrefter, kunden får SMS.</p></div>
-    <div class="feat"><div class="n">04</div><h3>Tilbudet skrevet</h3><p>Fra notatene og bildene dine etter befaringen. Du leser over og sender.</p></div>
-    <div class="feat"><div class="n">05</div><h3>Tilbud fulgt opp</h3><p>Vennlig påminnelse etter 3, 7 og 14 dager til kunder som ikke har svart.</p></div>
-    <div class="feat"><div class="n">06</div><h3>Faktura purret</h3><p>Påminnelse ved forfall, og spørsmål om anmeldelse når jobben er betalt.</p></div>
-  </div>
-</div></section>
-
-<section id="slik"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow">Slik virker det</span>
-    <h2>I gang på et døgn.</h2>
-  </div>
-  <div class="steps">
-    <div class="feat"><div class="n">Steg 1</div><h3>Fortell om firmaet</h3><p>Et kort skjema: hva dere gjør, hvor dere jobber og når dere kan ta befaring.</p></div>
-    <div class="feat"><div class="n">Steg 2</div><h3>Viderekoble «ved ikke svar»</h3><p>Du beholder nummeret ditt. Bare anrop du ikke tar, går til bakkontoret.</p></div>
-    <div class="feat"><div class="n">Steg 3</div><h3>Godkjenn på mobilen</h3><p>Alt som skal ut til en kunde, ligger i en kø. Ingenting sendes uten ditt trykk.</p></div>
-  </div>
-</div></section>
-
-<section class="alt" id="pris"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow">Pris</span>
-    <h2>Én ekstra jobb i måneden dekker det.</h2>
-    <p class="muted">Priser eks. mva. 14 dager gratis, ingen bindingstid.</p>
-  </div>
-  <div class="plans">
-    <div class="plan">
-      <h3>Svar</h3>
-      <div class="price">1 990 <small>kr/mnd</small></div>
-      <p class="muted">Bare telefonen.</p>
-      <ul><li>AI-resepsjonist på norsk</li><li>SMS ved tapt anrop</li><li>Befaring i kalenderen</li></ul>
-      <a class="btn ghost" href="#start">Få pilotplass</a>
+    <div class="form" aria-label="Eksempel på egenkontroll i Ordra">
+      <header><span>Egenkontroll · våtrom</span><span>Ordre 214</span></header>
+      <dl>
+        <dt>Kunde</dt><dd>Eksempel: Hansen, Storgata 12</dd>
+        <dt>Utført av</dt><dd>M. Berg</dd>
+      </dl>
+      <ul>
+        <li><span class="box on"></span>Fall mot sluk kontrollert og målt</li>
+        <li><span class="box on"></span>Membran ført opp på vegg, bilde lagt ved</li>
+        <li><span class="box on"></span>Mansjetter rundt rør og sluk montert</li>
+        <li><span class="box on"></span>Tetthetsprøve utført før flislegging</li>
+        <li><span class="box"></span>Overleveringsdokumentasjon sendt kunde</li>
+      </ul>
+      <footer><span>4 av 5 punkter</span><span>Signert 12.11</span></footer>
     </div>
-    <div class="plan main">
-      <h3>Bakkontor</h3>
-      <div class="price">3 490 <small>kr/mnd</small></div>
-      <p class="muted">Hele kontoret.</p>
-      <ul><li>Alt i Svar</li><li>Tilbud skrevet for deg</li><li>Oppfølging av tilbud</li><li>Purring og anmeldelser</li></ul>
-      <a class="btn acc" href="#start">Få pilotplass</a>
-    </div>
-  </div>
-  <p class="fine">Oppsett 2 990 kr, gratis for de 10 første firmaene.</p>
-</div></section>
-
-<section id="app"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow">Appen</span>
-    <h2>Last ned Ordra og se selv.</h2>
-    <p class="muted">Ordreboka er gratis for én bruker. Åpne den på mobilen og legg den på Hjem-skjermen, så ligger den der som en vanlig app. Ingen kort, ingen binding.</p>
-  </div>
-  <div class="actions" style="display:flex;gap:12px;flex-wrap:wrap">
-    <a class="btn lg" href="https://asstrata-art.github.io/ordra/">Åpne appen gratis</a>
-    <a class="btn ghost lg" href="#start">Få pilotplass på Bakkontor</a>
-  </div>
-  <p class="fine">iPhone: åpne i Safari, trykk Del og «Legg til på Hjem-skjerm». Android: åpne i Chrome og trykk «Installer app».</p>
-</div></section>
-
-<section class="alt" id="sporsmal"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">Spørsmål</span><h2>Det folk lurer på.</h2></div>
-  <div class="faq">
-    <details><summary>Skjønner kunden at det er en AI?</summary><p>Ja. Resepsjonisten sier det i første setning, og at samtalen tas opp.</p></details>
-    <details><summary>Kan den love pris eller tidspunkt?</summary><p>Nei. Den tar imot, noterer og foreslår. Pris og avtaler bestemmer du.</p></details>
-    <details><summary>Hva om det haster?</summary><p>Ved for eksempel aktiv lekkasje blir du varslet med en gang, og kan få samtalen satt over.</p></details>
-    <details><summary>Må jeg bytte telefonnummer?</summary><p>Nei. Du viderekobler bare anrop du ikke rekker å ta.</p></details>
-    <details><summary>Hvor lagres opplysningene?</summary><p>Vi inngår databehandleravtale med firmaet ditt før oppstart, og du kan få alt slettet når du vil.</p></details>
+    <p class="cap">Eksempel på egenkontroll. Sjekklisten følger ordren og havner i dokumentasjonen kunden får ved overlevering.</p>
   </div>
 </div></section>
 
-<section id="start" style="padding-top:0"><div class="wrap">
-  <div class="cta-box">
-    <h2>Få en av de 10 pilotplassene.</h2>
-    <p>Send firmanavn og telefonnummer, så får du en demo som svarer i ditt firmas navn før du bestemmer deg.</p>
-    <a class="btn acc lg" href="mailto:ordra@inkboxmail.com?subject=Pilotplass%20Ordra%20Bakkontor">Send e-post</a>
-    <span class="mail">ordra@inkboxmail.com</span>
+<section class="sec" id="systemet"><div class="wrap">
+  <h2>Dette er systemet</h2>
+  <p class="intro">Ordra er bygget rundt jobben, ikke rundt kontoret. Alt som hører til en ordre ligger samlet, fra første befaring til dokumentasjonen du trenger hvis kunden klager tre år senere.</p>
+  <dl class="parts">
+    <div><dt>Ordre og tilbud</dt><dd>Kunde, adresse og oppdrag i én mappe. Tilbud med linjer, mva og gyldighet, sendt som PDF. Systemet sier fra når tilbudet bør følges opp.</dd></div>
+    <div><dt>Befaring</dt><dd>Sjekkliste, mål, bilder og skisse på mobilen. Kunden får en ryddig befaringsrapport, og tilbudet bygger på den.</dd></div>
+    <div><dt>Timer og materiell</dt><dd>Start og stopp per jobb og per ansatt. Materiell og fortjeneste per ordre. Eksport til lønn og faktura.</dd></div>
+    <div><dt>KS og HMS</dt><dd>Risikovurdering, egenkontroll, avvik og overleveringsdokumentasjon. Signert, datert og samlet i én KS-rapport per jobb.</dd></div>
+    <div><dt>Dokumentasjonspakke</dt><dd>Én PDF med tilbud, befaring, timer, sjekklister, logg og alle bilder med dato.</dd></div>
+    <div><dt>Reklamasjon og service</dt><dd>Holder orden på reklamasjonsfrister og ettårskontroll, og oppretter serviceoppdrag til riktig tid.</dd></div>
+    <div><dt>Søknader</dt><dd>Hva som er søknadspliktig og hva som er unntatt, nabovarsel og søknadsgrunnlag, laget fra ordren.</dd></div>
+    <div><dt>Forbrukerkrav</dt><dd>Angrerettskjema, prisoverslag og fakturagrunnlag slik at tilbud til privatkunder holder.</dd></div>
+  </dl>
+</div></section>
+
+<section class="sec band" id="nivaer"><div class="wrap">
+  <h2>Tre nivåer. Du velger hvor mye AI skal gjøre.</h2>
+  <p class="intro">Systemet er det samme på alle nivåer. Forskjellen er hvem som gjør kontorarbeidet. Uansett nivå går ingenting ut til en kunde før du har godkjent det.</p>
+  <table class="levels">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Selv<small>Du bruker systemet</small></th>
+        <th>Med AI-hjelp<small>AI forbereder, du sender</small></th>
+        <th>Full AI-drift<small>AI driver bakkontoret</small></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="grp"><td colspan="4">Systemet</td></tr>
+      <tr><td>Ordrebok, tilbud, bilder, kunder</td><td><span class="tick"></span></td><td><span class="tick"></span></td><td><span class="tick"></span></td></tr>
+      <tr><td>KS/HMS, befaring, timer, dokumentasjon</td><td><span class="who">med Pro</span></td><td><span class="tick"></span></td><td><span class="tick"></span></td></tr>
+      <tr class="grp"><td colspan="4">Kontorarbeidet</td></tr>
+      <tr><td>Utkast til tilbud fra befaringen</td><td><span class="dash">–</span></td><td><span class="tick"></span></td><td><span class="tick"></span></td></tr>
+      <tr><td>Sjekklister og KS fylt ut på forhånd</td><td><span class="dash">–</span></td><td><span class="tick"></span></td><td><span class="tick"></span></td></tr>
+      <tr><td>Oppfølging av tilbud og frister</td><td><span class="dash">–</span></td><td><span class="tick"></span></td><td><span class="tick"></span></td></tr>
+      <tr><td>Telefonen besvart når dere er på jobb</td><td><span class="dash">–</span></td><td><span class="dash">–</span></td><td><span class="tick"></span></td></tr>
+      <tr><td>Befaring booket, purring på faktura</td><td><span class="dash">–</span></td><td><span class="dash">–</span></td><td><span class="tick"></span></td></tr>
+      <tr class="grp"><td colspan="4">Oppfølging fra oss</td></tr>
+      <tr><td>Oppsett etter firmaets maler og rutiner</td><td><span class="dash">–</span></td><td><span class="tick"></span></td><td><span class="tick"></span></td></tr>
+      <tr><td>Fast kontakt og jevnlig gjennomgang</td><td><span class="dash">–</span></td><td><span class="tick"></span></td><td><span class="tick"></span></td></tr>
+      <tr class="price"><td>Pris per måned, eks. mva</td><td>0 kr<small>Pro 249 kr for inntil 3 brukere</small></td><td>fra 1 990 kr</td><td>fra 3 490 kr</td></tr>
+    </tbody>
+  </table>
+  <p class="small" style="margin-top:14px;max-width:680px">Nivået kan endres når som helst, og det er ingen bindingstid. Prisen på nivå to og tre avtales i oppstarten, etter hvor mye som skal settes opp.</p>
+</div></section>
+
+<section class="sec" id="oppstart"><div class="wrap">
+  <h2>Slik starter vi</h2>
+  <p class="intro">Et KS-system virker bare hvis det passer måten dere faktisk jobber på. Derfor begynner vi med rutinene deres, ikke med programvaren.</p>
+  <ol class="steps">
+    <li><div><h3>Samtale</h3><p>En halvtime der vi går gjennom hvordan dere tar imot oppdrag, gir tilbud og dokumenterer i dag.</p></div></li>
+    <li><div><h3>Oppsett</h3><p>Vi legger inn malene, sjekklistene og rutinene deres, og avtaler hva AI skal gjøre og hva dere vil gjøre selv.</p></div></li>
+    <li><div><h3>Prøveperiode</h3><p>Fjorten dager i vanlig drift, uten kostnad. Dere ser alt AI foreslår før noe sendes.</p></div></li>
+    <li><div><h3>Oppfølging</h3><p>Ukentlig gjennomgang den første måneden, deretter månedlig. Vi justerer nivået etter hva som faktisk avlaster.</p></div></li>
+  </ol>
+</div></section>
+
+<section class="sec band" id="pilot"><div class="wrap two">
+  <div>
+    <h2>Ti pilotbedrifter</h2>
+    <p>Appen er tilgjengelig i dag. Nivåene med AI-hjelp er nye, og vi vil gjøre dem riktige før vi tar inn mange. Derfor starter vi med ti håndverksbedrifter som vi følger tett.</p>
+    <p>Pilotbedriftene får oppsettet uten kostnad og fjorten dagers prøveperiode. Til gjengjeld ber vi om ærlige tilbakemeldinger og, hvis dere blir fornøyde, lov til å bruke dere som referanse.</p>
+  </div>
+  <div>
+    <h3 style="margin-bottom:10px">Hvem passer det for</h3>
+    <ul class="plainlist">
+      <li>Håndverksbedrifter med én til ti ansatte</li>
+      <li>Rørlegger, elektriker, snekker, maler, tak, grunnarbeid</li>
+      <li>Dere som gjør tilbud og papirarbeid på kvelden</li>
+      <li>Dere som vil ha KS-dokumentasjonen på plass uten perm</li>
+    </ul>
   </div>
 </div></section>
 
-<footer><div class="wrap">Ordra · AI-bakkontor for håndverkere</div></footer>
+<section class="sec" id="kurs"><div class="wrap two">
+  <div>
+    <h2>Kurs: AI i håndverksbedriften</h2>
+    <p>Et praktisk kurs for eiere og ansatte som vil forstå hva AI kan brukes til i arbeidshverdagen, og hva det ikke bør brukes til. Vi tar utgangspunkt i deres egne jobber.</p>
+    <p>Kurset holdes hos dere eller på nett, og tar en halv dag. Pris på forespørsel.</p>
+  </div>
+  <div>
+    <h3 style="margin-bottom:10px">Innhold</h3>
+    <ul class="plainlist">
+      <li>Hva AI er god på, og hvor den tar feil</li>
+      <li>Tilbud, befaringsrapporter og kundesvar med AI</li>
+      <li>KS-systemer framover: fra perm til system som fyller seg selv</li>
+      <li>Ansvar, personvern og hva du alltid må kontrollere selv</li>
+      <li>Øvelse på egne ordre og sjekklister</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="sec band faq"><div class="wrap">
+  <h2>Spørsmål vi ofte får</h2>
+  <details><summary>Sender AI noe til kundene mine uten at jeg vet det?</summary><p>Nei. Tilbud, meldinger og purringer legges i en kø på mobilen din. Du leser, retter om nødvendig, og godkjenner. Først da går det ut.</p></details>
+  <details><summary>Hvordan virker telefonen på nivå tre?</summary><p>Du beholder nummeret ditt og viderekobler bare anrop du ikke rekker å ta. Resepsjonisten sier at den er en AI, noterer hva det gjelder og sender deg en oppsummering. Vi setter den opp for firmaet ditt og ringer deg så du kan teste den før du bestemmer deg.</p></details>
+  <details><summary>Hvor lagres opplysningene?</summary><p>I gratisversjonen ligger alt på din egen enhet. Med synkronisering og AI-nivåene inngår vi databehandleravtale før oppstart, og du kan få alt slettet når du vil.</p></details>
+  <details><summary>Erstatter dette KS-systemet vi har i dag?</summary><p>Det kan det, men det må det ikke. Dere kan starte med ordre og tilbud i Ordra og flytte sjekklister og egenkontroll over etter hvert.</p></details>
+  <details><summary>Må vi installere noe?</summary><p>Nei. Appen åpnes i Safari eller Chrome. På iPhone trykker du Del og «Legg til på Hjem-skjerm». På Android trykker du «Installer app».</p></details>
+</div></section>
+
+<section class="sec" id="kontakt"><div class="wrap narrow" style="margin-left:auto;margin-right:auto">
+  <h2>Kontakt</h2>
+  <p>Skriv noen linjer om bedriften og hva dere ønsker avlastning på, så tar vi kontakt for en samtale. Gjelder det kurs, si gjerne hvor mange dere er.</p>
+  <p class="contact"><a href="mailto:ordra@inkboxmail.com?subject=Ordra">ordra@inkboxmail.com</a></p>
+  <div class="row">
+    <a class="btn" href="https://asstrata-art.github.io/ordra/">Åpne appen gratis</a>
+  </div>
+</div></section>
+
+<footer class="end"><div class="wrap">Ordra. KS- og ordresystem utviklet av en håndverker, for håndverksbedrifter.</div></footer>
 </body>
 </html>
