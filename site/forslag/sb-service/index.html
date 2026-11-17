@@ -113,6 +113,11 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 .brandbar .lg{background:#f2b705;color:#1f2320;font-weight:700;font-size:13px;border-radius:7px;padding:5px 7px;letter-spacing:.04em}
 .tag.sb{background:#fdf3cf;color:#6b5200}
 .stamp.sb{background:#f2b705;color:#1f2320}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.shots figure{margin:0}
+.shots .phone{max-width:260px}
+.shots figcaption{font-size:15px;color:var(--muted);text-align:center;margin-top:14px}
+@media(max-width:620px){.shots{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -126,16 +131,10 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 <div>
 <p class="kicker">Forslag til SB Service AS, 17. november 2026</p>
 <h1>Slik ville vi satt opp Ordra hos dere.</h1>
-<p class="lead">Forslaget bygger på det som står offentlig om SB Service. Noe av det kan være feil eller utdatert, så rett oss gjerne. Alle navn og jobber i skissene er eksempler.</p>
+<p class="lead">Forslaget bygger på det som står offentlig om SB Service. Noe av det kan være feil eller utdatert, så rett oss gjerne. Skjermbildene er fra den ekte appen. Kunder og jobber i dem er eksempler.</p>
 <div class="btns"><a class="btn" href="#appen">Se oppsettet</a><a class="btn light" href="#nettside">Se nettsideskissen</a></div>
 </div>
-<div class="phone"><div class="app brand">
-<div class="brandbar"><span class="lg">SB</span><b>SB Service</b><span>Tirsdag</span></div>
-<div class="job"><b>Støttemur langs innkjørsel</b><small>Kari Nilsen · Storgata 5</small><br><span class="tag sb">Mur</span></div>
-<div class="job"><b>Drenering rundt grunnmur</b><small>Ola Berg · Elvegata 12</small><br><span class="tag sb">Drenering</span></div>
-<div class="job"><b>Planering av tomt</b><small>Borettslaget Lia · Liavegen 3</small><br><span class="tag sb">Planering</span></div>
-<div class="stamp sb">Stemple inn</div>
-</div></div>
+<div class="phone"><img src="img/ordrebok.png" width="780" height="1688" alt="Ordreboka i Ordra med SB Service sin logo og fire anleggsjobber">
 </div></section>
 
 <section class="block soft"><div class="wrap split">
@@ -170,7 +169,11 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 <div class="col"><h3>Timer per jobb</h3>
 <p>Ansatte og innleide stempler inn og ut på jobben de står på. Dere ser timene per jobb og per person, uten lapper.</p></div>
 <div class="col"><h3>Deres logo og farger</h3>
-<p>Appen får SB Service sin logo øverst og fargene deres på knapper og merker. Skissen over bruker midlertidige farger. Send oss logoen, så legger vi den inn.</p></div>
+<p>Logoen står øverst i appen og på tilbudene dere sender. Appen er holdt i blått, svart og hvitt, som SB Service. Merket i skjermbildene er midlertidig til vi får den ekte logoen.</p></div>
+</div>
+<div class="shots">
+<figure><div class="phone"><img src="img/ordre.png" width="780" height="1688" alt="En ordre for støttemur i Ordra"></div><figcaption>Én jobb: hva som er avtalt, pris og timer.</figcaption></figure>
+<figure><div class="phone"><img src="img/timer.png" width="780" height="1688" alt="Timestempling på en jobb i Ordra"></div><figcaption>Stempling inn og ut på jobben.</figcaption></figure>
 </div>
 </div></section>
 
@@ -224,15 +227,15 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 <li><b>Et kort skjema</b> for forespørsler, som dere får rett på e-post.</li>
 </ul>
 <div class="btns"><a class="btn" href="nettside/">Åpne utkastet</a></div>
-<p class="note">Farger, logo og bilder er midlertidige. Ingenting publiseres før dere har godkjent det.</p>
+<p class="note">Utkastet er i blått, svart og hvitt. Logo og bilder er midlertidige. Ingenting publiseres før dere har godkjent det.</p>
 </div>
 <a class="browser" href="nettside/" style="text-decoration:none;display:block">
 <div class="chrome">sbservice.no (utkast)</div>
-<div class="site" style="background:#1f2320">
-<div class="nm" style="color:#f2b705">SB SERVICE</div>
+<div class="site" style="background:#111418">
+<div class="nm" style="color:#fff">SB SERVICE</div>
 <h3 style="color:#fff">Graving, støttemurer og planering på Lillehammer.</h3>
 <p style="color:#c9cdc9">Anleggsentreprenør for private og bedrifter.</p>
-<span class="cta" style="background:#f2b705;color:#1f2320">Be om befaring</span>
+<span class="cta" style="background:#1557c0;color:#fff">Be om befaring</span>
 </div>
 </a>
 </div></section>
