@@ -63,7 +63,7 @@ section.soft{background:var(--soft)}
 .tag{display:inline-block;background:#fff1e8;color:#a84a00;font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px}
 .cap{font-size:14px;color:var(--muted);text-align:center;margin-top:14px}
 
-.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.cols{display:grid;grid-template-columns:repeat(2,1fr);gap:40px}
 @media(max-width:820px){.cols{grid-template-columns:1fr;gap:0}}
 .col{border-top:2px solid var(--ink);padding-top:18px}
 @media(max-width:820px){.col{padding:22px 0 26px}}
@@ -105,6 +105,14 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 .site ul{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:15px;color:var(--ink)}
 .site li{border:1px solid var(--line);border-radius:10px;padding:9px 12px}
 .site .cta{display:inline-block;background:var(--ink);color:#fff;border-radius:10px;padding:10px 16px;font-weight:600;font-size:15px;margin-top:20px}
+
+.app.brand{padding-top:0}
+.brandbar{display:flex;align-items:center;gap:10px;background:#1f2320;color:#fff;margin:0 -16px 14px;padding:14px 16px}
+.brandbar b{color:#fff;font-size:17px;flex:1}
+.brandbar span{font-size:13px;color:#c9cdc9}
+.brandbar .lg{background:#f2b705;color:#1f2320;font-weight:700;font-size:13px;border-radius:7px;padding:5px 7px;letter-spacing:.04em}
+.tag.sb{background:#fdf3cf;color:#6b5200}
+.stamp.sb{background:#f2b705;color:#1f2320}
 </style>
 </head>
 <body>
@@ -121,12 +129,12 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 <p class="lead">Forslaget bygger på det som står offentlig om SB Service. Noe av det kan være feil eller utdatert, så rett oss gjerne. Alle navn og jobber i skissene er eksempler.</p>
 <div class="btns"><a class="btn" href="#appen">Se oppsettet</a><a class="btn light" href="#nettside">Se nettsideskissen</a></div>
 </div>
-<div class="phone"><div class="app">
-<div class="bar"><b>SB Service</b><span>Tirsdag</span></div>
-<div class="job"><b>Bytte to innerdører</b><small>Kari Nilsen · Storgata 5</small><br><span class="tag">Snekker</span></div>
-<div class="job"><b>Male stue og gang</b><small>Ola Berg · Elvegata 12</small><br><span class="tag">Maling</span></div>
-<div class="job"><b>Drenering langs grunnmur</b><small>Borettslaget Lia · Liavegen 3</small><br><span class="tag">Grunnarbeid</span></div>
-<div class="stamp">Stemple inn</div>
+<div class="phone"><div class="app brand">
+<div class="brandbar"><span class="lg">SB</span><b>SB Service</b><span>Tirsdag</span></div>
+<div class="job"><b>Støttemur langs innkjørsel</b><small>Kari Nilsen · Storgata 5</small><br><span class="tag sb">Mur</span></div>
+<div class="job"><b>Drenering rundt grunnmur</b><small>Ola Berg · Elvegata 12</small><br><span class="tag sb">Drenering</span></div>
+<div class="job"><b>Planering av tomt</b><small>Borettslaget Lia · Liavegen 3</small><br><span class="tag sb">Planering</span></div>
+<div class="stamp sb">Stemple inn</div>
 </div></div>
 </div></section>
 
@@ -134,18 +142,18 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 <div>
 <h2>Det vi fant om dere</h2>
 <dl class="facts" style="margin-top:22px">
-<div><dt>Firma</dt><dd>SB Service AS, Lillehammer. Stiftet i 2024, registrert med 5 ansatte.</dd></div>
-<div><dt>Fag</dt><dd>Snekkerarbeid og montering av dører, vinduer og kjøkken. Maling. Mur. Gulv, flis og tapet. Grunnarbeid som graving og drenering.</dd></div>
-<div><dt>Kunder</dt><dd>Private og bedrifter. Vedlikehold, oppussing, reparasjon og renovering.</dd></div>
+<div><dt>Firma</dt><dd>SB Service AS, anleggsentreprenør på Lillehammer. Stiftet i 2024, registrert med 5 ansatte.</dd></div>
+<div><dt>Fag</dt><dd>Maskinarbeid og grunnarbeid: graving, drenering og planering. Muring av støttemurer.</dd></div>
+<div><dt>Kunder</dt><dd>Private og bedrifter.</dd></div>
 <div><dt>På nett</dt><dd>Ingen nettside, telefon eller e-post er registrert i Enhetsregisteret, og vi fant ingen egen nettside i søk.</dd></div>
 </dl>
-<p class="src">Kilde: Enhetsregisteret (Brønnøysundregistrene), hentet 17.11.2026.</p>
+<p class="src">Kilder: Enhetsregisteret (Brønnøysundregistrene), hentet 17.11.2026, og det dere selv har fortalt oss.</p>
 </div>
 <div>
 <h3>Hva vi leser ut av det</h3>
 <ul class="points">
-<li><b>Mange fag i ett firma.</b> En jobb kan gå fra graving til maling. Da må alle se samme jobb og hvor langt den har kommet.</li>
-<li><b>Få folk, alle ute.</b> Med fem ansatte er det ingen som sitter ved telefonen på dagtid.</li>
+<li><b>Jobbene går over flere dager og flere mann.</b> Graving, drenering og mur henger sammen. Da må alle se samme jobb og hvor langt den har kommet.</li>
+<li><b>Alle sitter i maskin eller står i grøfta.</b> Da er det ingen som kan ta telefonen på dagtid.</li>
 <li><b>Vanskelig å finne dere.</b> Uten nettside må nye kunder kjenne noen som kjenner dere.</li>
 </ul>
 </div>
@@ -156,19 +164,21 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 <p>Vi legger inn dette før dere logger inn første gang, så dere slipper å starte med blanke ark.</p></div>
 <div class="cols">
 <div class="col"><h3>Jobbtyper for deres fag</h3>
-<ul><li>Snekker og montering</li><li>Maling</li><li>Mur</li><li>Gulv, flis og tapet</li><li>Grunnarbeid og drenering</li><li>Fast vedlikehold</li></ul></div>
+<ul><li>Graving og grunnarbeid</li><li>Drenering</li><li>Planering</li><li>Støttemurer og muring</li><li>Maskinarbeid på timer</li></ul></div>
 <div class="col"><h3>Én ordre per jobb</h3>
 <p>Kunde, adresse og hva som er avtalt, samlet på ett sted. Alle som er på jobben ser det samme på mobilen.</p></div>
 <div class="col"><h3>Timer per jobb</h3>
 <p>Ansatte og innleide stempler inn og ut på jobben de står på. Dere ser timene per jobb og per person, uten lapper.</p></div>
+<div class="col"><h3>Deres logo og farger</h3>
+<p>Appen får SB Service sin logo øverst og fargene deres på knapper og merker. Skissen over bruker midlertidige farger. Send oss logoen, så legger vi den inn.</p></div>
 </div>
 </div></section>
 
 <section class="block soft" id="telefon"><div class="wrap split">
 <div>
 <h2>Resepsjonisten, slik den svarer for dere</h2>
-<p style="margin-top:14px">Phillip prøvde den på telefon i dag. Slik åpner den:</p>
-<p style="margin-top:14px;color:var(--ink);font-weight:600">«Hei, du har kommet til SB Service. Jeg er en AI-resepsjonist som tar telefonen når snekkerne er ute på jobb. Hva kan jeg hjelpe deg med?»</p>
+<p style="margin-top:14px">Phillip prøvde en første versjon på telefon i dag. Slik åpner den når den er satt opp for anlegg:</p>
+<p style="margin-top:14px;color:var(--ink);font-weight:600">«Hei, du har kommet til SB Service. Jeg er en AI-resepsjonist som tar telefonen når vi er ute på anlegg. Hva kan jeg hjelpe deg med?»</p>
 <ul class="points">
 <li><b>Spør hva det gjelder</b> og om det haster.</li>
 <li><b>Tar navn og adresse</b> og avtaler at dere ringer tilbake.</li>
@@ -180,11 +190,11 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 <div class="msg">
 <div class="from"><b>Ordra · resepsjonisten</b><span>10:42</span></div>
 <h3>Ny henvendelse</h3>
-<span class="tag">Snekker</span>
+<span class="tag">Støttemur</span>
 <dl>
 <div><dt>Hvem</dt><dd>Kari Nilsen</dd></div>
 <div><dt>Hvor</dt><dd>Storgata 5</dd></div>
-<div><dt>Hva</dt><dd>Vil bytte to innerdører. Haster ikke.</dd></div>
+<div><dt>Hva</dt><dd>Vil ha støttemur langs innkjørselen, omtrent 12 meter. Ønsker befaring.</dd></div>
 <div><dt>Neste</dt><dd>Ring tilbake på nummeret hun ringte fra.</dd></div>
 </dl>
 </div>
@@ -192,30 +202,42 @@ footer{padding:28px 0 44px;font-size:15px;color:var(--muted);border-top:1px soli
 </div>
 </div></section>
 
-<section class="block" id="nettside"><div class="wrap split">
+<section class="block" id="agenter"><div class="wrap">
+<div class="head"><h2>Agenter som står på hele tiden</h2>
+<p>Resepsjonisten er én av flere. Hver agent har én oppgave og er på døgnet rundt. Dere velger hvilke dere vil ha, og dere godkjenner alt som går ut til kunder.</p></div>
+<div class="cols">
+<div class="col"><h3>Telefon</h3><p>Tar samtalene dere ikke rekker, og sender oppsummering.</p></div>
+<div class="col"><h3>Forespørsler</h3><p>Tar imot det som kommer på e-post og skjema, og legger det klart som ny jobb.</p></div>
+<div class="col"><h3>Tilbud</h3><p>Minner dere på tilbud som ikke er sendt, og følger opp de som ikke er besvart.</p></div>
+<div class="col"><h3>Timer og status</h3><p>Samler ukens timer per jobb og sier fra om jobber som har stått stille.</p></div>
+</div>
+<p class="note">Vi starter med telefon. Resten kobles på én om gangen, når den første fungerer for dere.</p>
+</div></section>
+
+<section class="block soft" id="nettside"><div class="wrap split">
 <div>
-<h2>Forslag til en enkel nettside</h2>
-<p style="margin-top:14px">Én side som sier hva dere gjør, hvor dere holder til og hvordan kunden får tak i dere. Mer trengs ikke for å bli funnet.</p>
+<h2>Utkast til nettside</h2>
+<p style="margin-top:14px">Vi har laget et utkast til en enkel nettside for SB Service. Én side som sier hva dere gjør, hvor dere holder til og hvordan kunden får tak i dere.</p>
 <ul class="points">
-<li><b>Fagene deres</b> øverst, i klart språk.</li>
+<li><b>Tjenestene deres</b> øverst, i klart språk.</li>
 <li><b>Ett telefonnummer.</b> Tar dere den ikke, svarer resepsjonisten.</li>
 <li><b>Et kort skjema</b> for forespørsler, som dere får rett på e-post.</li>
 </ul>
-<p class="note">Dette er en skisse. Tekst, bilder og omfang avtaler vi med dere før noe publiseres.</p>
+<div class="btns"><a class="btn" href="nettside/">Åpne utkastet</a></div>
+<p class="note">Farger, logo og bilder er midlertidige. Ingenting publiseres før dere har godkjent det.</p>
 </div>
-<div class="browser">
-<div class="chrome">sbservice.no (eksempel)</div>
-<div class="site">
-<div class="nm">SB SERVICE</div>
-<h3>Snekker, maler og murer på Lillehammer.</h3>
-<p>Én kontakt for hele jobben, fra graving til siste strøk.</p>
-<ul><li>Dører, vinduer, kjøkken</li><li>Maling</li><li>Mur og flis</li><li>Gulv og tapet</li><li>Drenering</li><li>Fast vedlikehold</li></ul>
-<span class="cta">Send forespørsel</span>
+<a class="browser" href="nettside/" style="text-decoration:none;display:block">
+<div class="chrome">sbservice.no (utkast)</div>
+<div class="site" style="background:#1f2320">
+<div class="nm" style="color:#f2b705">SB SERVICE</div>
+<h3 style="color:#fff">Graving, støttemurer og planering på Lillehammer.</h3>
+<p style="color:#c9cdc9">Anleggsentreprenør for private og bedrifter.</p>
+<span class="cta" style="background:#f2b705;color:#1f2320">Be om befaring</span>
 </div>
-</div>
+</a>
 </div></section>
 
-<section class="block soft"><div class="wrap split">
+<section class="block"><div class="wrap split">
 <div>
 <h2>Neste steg</h2>
 <ol class="steps" style="margin-top:22px">

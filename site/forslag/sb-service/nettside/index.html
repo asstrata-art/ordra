@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>SB Service AS – anleggsentreprenør på Lillehammer (utkast)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&display=swap">
+<style>
+:root{--coal:#1f2320;--stone:#ece9e2;--paper:#f8f6f1;--ink:#23272a;--mute:#666b66;--yellow:#f2b705;--line:#d9d5cb;--f:"Archivo",system-ui,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:400 18px/1.6 var(--f);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.w{max-width:1060px;margin:0 auto;padding:0 24px}
+.draft{background:var(--yellow);color:var(--coal);font-size:14px;font-weight:600;text-align:center;padding:8px 16px}
+header{background:var(--coal);color:#fff}
+.nav{display:flex;align-items:center;gap:24px;padding-top:20px;padding-bottom:20px}
+.mark{font-weight:800;font-stretch:112%;letter-spacing:.04em;font-size:20px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark i{display:block;width:26px;height:18px;background:
+ linear-gradient(var(--yellow),var(--yellow)) 0 0/12px 8px no-repeat,
+ linear-gradient(var(--yellow),var(--yellow)) 14px 0/12px 8px no-repeat,
+ linear-gradient(var(--yellow),var(--yellow)) 7px 10px/12px 8px no-repeat}
+.nav nav{margin-left:auto;display:flex;gap:22px;font-size:16px}
+.nav nav a{text-decoration:none;color:#d5d8d4}
+.nav nav a:hover{color:#fff}
+@media(max-width:640px){.nav nav a:not(.tel){display:none}}
+.hero{padding-top:56px}
+.hero h1{font-size:clamp(38px,7.2vw,76px);line-height:1.02;font-weight:800;font-stretch:108%;letter-spacing:-.02em;margin:0;max-width:13ch}
+.hero p{font-size:20px;color:#d5d8d4;max-width:520px;margin:22px 0 0}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.b{display:inline-block;background:var(--yellow);color:var(--coal);font-weight:700;text-decoration:none;padding:15px 24px;border-radius:4px;font-size:17px}
+.b.o{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #5a605b}
+/* støttemur: forskjøvne steiner */
+.wall{margin-top:56px;height:132px;background:
+ repeating-linear-gradient(90deg,transparent 0 118px,var(--coal) 118px 124px) 0 0/100% 44px no-repeat,
+ repeating-linear-gradient(90deg,transparent 0 118px,var(--coal) 118px 124px) -62px 44px/calc(100% + 62px) 44px no-repeat,
+ repeating-linear-gradient(90deg,transparent 0 118px,var(--coal) 118px 124px) 0 88px/100% 44px no-repeat,
+ linear-gradient(var(--coal),var(--coal)) 0 40px/100% 6px no-repeat,
+ linear-gradient(var(--coal),var(--coal)) 0 84px/100% 6px no-repeat,
+ #8b8d86}
+section{padding:72px 0}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.1;font-weight:800;font-stretch:106%;letter-spacing:-.015em;margin:0 0 12px}
+.lead{max-width:600px;color:var(--mute);margin:0 0 36px}
+.svc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:2px solid var(--ink)}
+@media(max-width:720px){.svc{grid-template-columns:1fr}}
+.svc div{padding:24px 24px 26px 0;border-bottom:1px solid var(--line)}
+.svc div:nth-child(odd){border-right:1px solid var(--line)}
+.svc div:nth-child(even){padding-left:24px}
+@media(max-width:720px){.svc div,.svc div:nth-child(even),.svc div:nth-child(odd){padding:22px 0;border-right:0}}
+.svc h3{margin:0 0 6px;font-size:21px;font-weight:700}
+.svc p{margin:0;color:var(--mute);font-size:17px}
+.stone{background:var(--stone)}
+.how{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;counter-reset:s}
+@media(max-width:720px){.how{grid-template-columns:1fr;gap:22px}}
+.how li{counter-increment:s;border-top:6px solid var(--yellow);padding-top:16px}
+.how li:before{content:counter(s);font-weight:800;font-size:30px;display:block;line-height:1;margin-bottom:8px}
+.how b{display:block;font-size:19px;margin-bottom:4px}
+.how span{color:var(--mute);font-size:17px}
+.contact{background:var(--coal);color:#fff}
+.contact .g{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media(max-width:720px){.contact .g{grid-template-columns:1fr;gap:32px}}
+.contact p{color:#d5d8d4;margin:0 0 18px}
+.big{font-size:clamp(26px,4vw,36px);font-weight:800;text-decoration:none;display:block;margin-bottom:6px}
+.ph{color:var(--yellow)}
+form{display:grid;gap:12px}
+label{font-size:15px;color:#d5d8d4;display:grid;gap:6px}
+input,textarea{font:inherit;padding:12px 14px;border-radius:4px;border:1px solid #5a605b;background:#2a2f2b;color:#fff}
+input:focus,textarea:focus{outline:3px solid var(--yellow);outline-offset:1px}
+button{font:inherit;font-weight:700;background:var(--yellow);color:var(--coal);border:0;border-radius:4px;padding:14px 20px;cursor:pointer;justify-self:start}
+.fn{font-size:14px;color:#aeb3ad;margin:0}
+footer{background:var(--coal);color:#aeb3ad;font-size:15px;padding:0 0 36px}
+footer .w{border-top:1px solid #3a403b;padding-top:22px}
+</style>
+</head>
+<body>
+<div class="draft">Utkast laget av Ordra for SB Service. Tekst i gult må fylles inn av dere. Ikke publisert.</div>
+<header>
+<div class="w nav">
+<a class="mark" href="#"><i></i>SB SERVICE</a>
+<nav><a href="#tjenester">Tjenester</a><a href="#slik">Slik jobber vi</a><a class="tel" href="#kontakt">Kontakt</a></nav>
+</div>
+<div class="w hero">
+<h1>Graving, støttemurer og planering.</h1>
+<p>SB Service er anleggsentreprenør på Lillehammer. Vi tar grunnarbeid og mur for private og bedrifter, med egne maskiner.</p>
+<div class="btns"><a class="b" href="#kontakt">Be om befaring</a><a class="b o" href="#tjenester">Se hva vi gjør</a></div>
+</div>
+<div class="wall" role="img" aria-label="Illustrasjon av en støttemur"></div>
+</header>
+
+<main>
+<section id="tjenester"><div class="w">
+<h2>Dette gjør vi</h2>
+<p class="lead">Fra første spadetak til ferdig planert tomt.</p>
+<div class="svc">
+<div><h3>Graving og grunnarbeid</h3><p>Tomter, grøfter og innkjørsler.</p></div>
+<div><h3>Drenering</h3><p>Rundt grunnmur og på tomter som holder på vannet.</p></div>
+<div><h3>Støttemurer</h3><p>Muring av støttemurer i skrånende terreng.</p></div>
+<div><h3>Planering</h3><p>Tomter, plener og plasser som skal være rette og klare til bruk.</p></div>
+</div>
+</div></section>
+
+<section class="stone" id="slik"><div class="w">
+<h2>Slik jobber vi</h2>
+<p class="lead">Du skal vite hva som skjer, og når.</p>
+<ol class="how">
+<li><b>Befaring</b><span>Vi ser på tomta sammen med deg og avklarer hva som skal gjøres.</span></li>
+<li><b>Tilbud</b><span>Du får et skriftlig tilbud med hva som er med.</span></li>
+<li><b>Utførelse</b><span>Vi gjør jobben og rydder etter oss.</span></li>
+</ol>
+</div></section>
+
+<section class="contact" id="kontakt"><div class="w g">
+<div>
+<h2>Ta kontakt</h2>
+<p>Ring eller send noen linjer om jobben. Er vi ute på anlegg, tar resepsjonisten vår imot beskjeden, og vi ringer deg tilbake.</p>
+<span class="big ph">Telefonnummer fylles inn</span>
+<span class="big ph" style="font-size:22px">E-postadresse fylles inn</span>
+<p style="margin-top:18px">SB Service AS · Lillehammer · Org.nr. 933 244 539</p>
+</div>
+<form onsubmit="return false">
+<label>Navn<input type="text" autocomplete="name"></label>
+<label>Telefon<input type="tel" autocomplete="tel"></label>
+<label>Hva gjelder det?<textarea rows="4"></textarea></label>
+<button type="submit">Send forespørsel</button>
+<p class="fn">Skjemaet er ikke koblet til i utkastet.</p>
+</form>
+</div></section>
+</main>
+<footer><div class="w">Utkast. Logo, farger og bilder fra egne jobber legges inn når vi får dem fra SB Service.</div></footer>
+</body>
+</html>
