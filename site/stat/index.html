@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Ordra – bruk</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Manrope:wght@500;700;800&display=swap">
+<style>
+:root{--bone:#efece6;--paper:#faf9f6;--coal:#131313;--ink:#151515;--ink2:#3a3a3a;--muted:#6b6b6b;--line:#d9d5cc;--accent:#ff6a00;--disp:"Barlow Condensed","Arial Narrow",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bone);color:var(--ink2);font:500 16px/1.5 Manrope,system-ui,sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:0 20px}
+header{background:var(--coal);color:#fff;padding:22px 0 30px}
+.b{display:flex;align-items:center;gap:10px;font:800 14px/1 Manrope;letter-spacing:.2em;margin-bottom:26px}.b i{width:13px;height:13px;background:var(--accent);border-radius:3px;transform:rotate(10deg);display:block}
+h1{font:800 clamp(44px,8vw,84px)/.92 var(--disp);text-transform:uppercase;margin:0}
+header p{color:#bdb9b2;margin:12px 0 0}
+.per{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}.per button{font:700 14px Manrope;border:1px solid #3a3a3a;background:transparent;color:#fff;border-radius:8px;padding:9px 14px;cursor:pointer}.per button.on{background:#fff;color:var(--coal)}
+h2{font:800 30px/1 var(--disp);text-transform:uppercase;color:var(--ink);margin:44px 0 14px}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--ink);margin-top:30px}
+.kpi div{padding:14px 12px 16px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
+.kpi b{display:block;font:800 46px/1 var(--disp);color:var(--ink);font-variant-numeric:tabular-nums}
+@media(max-width:700px){.kpi{grid-template-columns:1fr 1fr}}
+table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums;background:var(--paper)}
+th{font:700 13px var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink)}
+td{padding:9px 12px;border-bottom:1px solid var(--line)}td.n,th.n{text-align:right}
+.bar{height:10px;background:var(--accent);display:block;min-width:2px}
+.tw{overflow-x:auto}
+.msg{margin:30px 0;padding:18px;background:var(--paper);border:1px solid var(--line)}
+footer{color:var(--muted);font-size:13.5px;margin:40px auto 50px}
+</style></head><body>
+<header><div class="w"><div class="b"><i></i>ORDRA</div><h1>Bruk av app og nettside</h1><p id="sub">Henter tall …</p>
+<div class="per"><button data-d="1">Siste døgn</button><button data-d="7">7 dager</button><button data-d="14" class="on">14 dager</button><button data-d="30">30 dager</button></div></div></header>
+<main class="w"><div id="ut"></div></main>
+<footer class="w">Tallene er anonyme. En «økt» er én åpning av appen eller nettsiden i en fane. Den samme personen telles på nytt neste gang, fordi ingenting lagres på enheten. Last siden på nytt for ferske tall.</footer>
+<script>
+var U='https://zfohsvnoszvpyedlvjgu.supabase.co',K='sb_publishable_O9UuFPde_zqQ2zeXxejkUg_vVSiCh-s',n=(location.hash||'').slice(1),dager=14;
+var NAVN={'nav:hjem':'Meny: Hjem','nav:ordre':'Meny: Ordrebok','nav:kal':'Meny: Kalender','nav:kunder':'Meny: Kunder','nav:mer':'Meny: Mer','new':'Knapp: Ny ordre','newF':'Ordre opprettet','panel:abo':'Åpnet «Vi setter sammen en pakke»','buy:pro':'Spurte om Pro','buy:ai':'Spurte om AI','buy:drift':'Spurte om Drift','pakke':'Trykket «Skriv e-post» om pakke','copyepost':'Kopierte e-postadressen','setlang:en':'Byttet til engelsk','setlang:nb':'Byttet til norsk','onbF':'Fylte ut firmanavn ved start','onbskip':'Hoppet over oppstart','onbdemo':'La inn eksempeldata','trial':'Startet Pro-prøve','feedback':'Trykket «Skriv til oss»','epost':'Nettside: trykket e-postlenke','spraak:en':'Nettside: byttet til engelsk','spraak:nb':'Nettside: byttet til norsk','#pris':'Nettside: gikk til Pris','#innhold':'Nettside: gikk til Innhold','#slik':'Nettside: gikk til Slik virker det','#sporsmal':'Nettside: gikk til Spørsmål'};
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function navn(d){if(NAVN[d])return NAVN[d];if(/^aapne_appen/.test(d))return 'Nettside: åpnet appen ('+d.slice(13)+')';if(/^panel:/.test(d))return 'Åpnet: '+d.slice(6);if(/^otab:/.test(d))return 'Fane på ordre: '+d.slice(5);return d}
+function hent(){var ut=document.getElementById('ut'),sub=document.getElementById('sub');
+ if(!n){sub.textContent='Lenken mangler nøkkelen.';ut.innerHTML='<div class="msg">Åpne siden fra lenken du fikk på e-post. Den inneholder en nøkkel etter tegnet #.</div>';return}
+ fetch(U+'/rest/v1/rpc/statistikk',{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({nokkel:n,dager:dager})}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.message||r.status);return j})}).then(function(d){
+  var t=d.totalt;sub.textContent='Siste '+(d.dager==1?'døgn':d.dager+' dager')+'. Oppdatert '+new Date(d.oppdatert).toLocaleString('nb-NO',{dateStyle:'short',timeStyle:'short'})+'.';
+  var h='<div class="kpi"><div><b>'+t.app_okter+'</b>åpninger av appen</div><div><b>'+t.nye_brukere+'</b>av dem for første gang</div><div><b>'+t.ordre_opprettet+'</b>ordre opprettet</div><div><b>'+t.nettside_besok+'</b>besøk på nettsiden</div><div><b>'+t.til_appen_fra_nettside+'</b>gikk fra nettsiden til appen</div><div><b>'+t.pakke_sett+'</b>så på pakkesiden</div><div><b>'+t.pakke_epost+'</b>trykket «Skriv e-post»</div><div><b>'+t.hendelser+'</b>hendelser i alt</div></div>';
+  if(!t.hendelser){h+='<div class="msg">Ingen besøk er registrert i denne perioden ennå.</div>';ut.innerHTML=h;return}
+  var mx=Math.max.apply(null,d.per_dag.map(function(x){return Math.max(x.app,x.nettside)}).concat([1]));
+  h+='<h2>Dag for dag</h2><div class="tw"><table><tr><th>Dag</th><th class="n">App</th><th></th><th class="n">Nettside</th><th class="n">Ordre</th></tr>'+d.per_dag.map(function(x){return '<tr><td>'+esc(new Date(x.dag+'T12:00').toLocaleDateString('nb-NO',{weekday:'short',day:'numeric',month:'short'}))+'</td><td class="n">'+x.app+'</td><td style="width:40%"><span class="bar" style="width:'+Math.round(100*x.app/mx)+'%"></span></td><td class="n">'+x.nettside+'</td><td class="n">'+x.ordre+'</td></tr>'}).join('')+'</table></div>';
+  h+='<h2>Hvor de kom fra</h2><div class="tw"><table><tr><th>Kilde</th><th>Flate</th><th class="n">Økter</th></tr>'+d.kilder.map(function(x){return '<tr><td>'+esc(x.kilde)+'</td><td>'+esc(x.flate)+'</td><td class="n">'+x.okter+'</td></tr>'}).join('')+'</table></div>';
+  h+='<h2>Hva de trykket på</h2><div class="tw"><table><tr><th>Handling</th><th>Flate</th><th class="n">Ganger</th><th class="n">Økter</th></tr>'+d.trykk.map(function(x){return '<tr><td>'+esc(navn(x.detalj))+'</td><td>'+esc(x.flate)+'</td><td class="n">'+x.antall+'</td><td class="n">'+x.okter+'</td></tr>'}).join('')+'</table></div>';
+  h+='<h2>Språk i appen</h2><div class="tw"><table><tr><th>Språk</th><th class="n">Økter</th></tr>'+d.sprak.map(function(x){return '<tr><td>'+esc({nb:'Norsk',en:'Engelsk',sv:'Svensk',da:'Dansk',de:'Tysk'}[x.sprak]||x.sprak)+'</td><td class="n">'+x.okter+'</td></tr>'}).join('')+'</table></div>';
+  ut.innerHTML=h}).catch(function(e){sub.textContent='Kunne ikke hente tall.';ut.innerHTML='<div class="msg">'+esc(e.message)+'</div>'})}
+document.querySelectorAll('.per button').forEach(function(b){b.addEventListener('click',function(){dager=+b.dataset.d;document.querySelectorAll('.per button').forEach(function(x){x.classList.toggle('on',x===b)});hent()})});
+hent();
+</script></body></html>
