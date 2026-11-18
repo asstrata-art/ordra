@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="nb"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ordra – bilder til innlegg</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;margin:24px;background:#efece6;color:#151515}div.r{display:flex;gap:16px;align-items:center;margin:0 0 16px}img{width:120px;height:auto;border:1px solid #d9d5cc}button{font:700 15px system-ui;padding:12px 16px;border-radius:8px;border:2px solid #151515;background:#151515;color:#fff;cursor:pointer}#s{font-weight:700}</style></head><body>
+<h1>Bilder til innlegg</h1><p id="s">Klar</p>
+<div class="r"><img src="ordra_1_presentasjon.png" alt="ordra_1_presentasjon"><button id="k1" data-f="ordra_1_presentasjon.png">Kopier ordra_1_presentasjon</button></div>
+<div class="r"><img src="ordra_2_skriftlig_pris.png" alt="ordra_2_skriftlig_pris"><button id="k2" data-f="ordra_2_skriftlig_pris.png">Kopier ordra_2_skriftlig_pris</button></div>
+<div class="r"><img src="ordra_3_maal_to_ganger.png" alt="ordra_3_maal_to_ganger"><button id="k3" data-f="ordra_3_maal_to_ganger.png">Kopier ordra_3_maal_to_ganger</button></div>
+<div class="r"><img src="ordra_4_30000_38000.png" alt="ordra_4_30000_38000"><button id="k4" data-f="ordra_4_30000_38000.png">Kopier ordra_4_30000_38000</button></div>
+<div class="r"><img src="ordra_5_null_kroner.png" alt="ordra_5_null_kroner"><button id="k5" data-f="ordra_5_null_kroner.png">Kopier ordra_5_null_kroner</button></div>
+<div class="r"><img src="ordra_6_rett_verktoy.png" alt="ordra_6_rett_verktoy"><button id="k6" data-f="ordra_6_rett_verktoy.png">Kopier ordra_6_rett_verktoy</button></div>
+<div class="r"><img src="ordra_facebook_forsidebilde.png" alt="ordra_facebook_forsidebilde"><button id="k7" data-f="ordra_facebook_forsidebilde.png">Kopier ordra_facebook_forsidebilde</button></div>
+
+<script>
+document.addEventListener('click',async e=>{const b=e.target.closest('button[data-f]');if(!b)return;const s=document.getElementById('s');s.textContent='Kopierer '+b.dataset.f+' …';
+try{const blob=await (await fetch(b.dataset.f)).blob();await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);s.textContent='Kopiert: '+b.dataset.f+' ('+blob.size+' byte)'}catch(x){s.textContent='Feil: '+(x&&x.message||x)}});
+</script></body></html>
