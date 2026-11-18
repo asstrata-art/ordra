@@ -203,7 +203,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:18px
     <details open><summary>Er det virkelig gratis?</summary><p>Ja. Gratisversjonen har ingen tidsbegrensning, og du trenger verken konto eller kort. Den dekker det en liten bedrift trenger: ordrebok, tilbud, bilder, notater og kunder.</p></details>
     <details><summary>Må jeg installere noe?</summary><p>Nei. Åpne lenken i Safari eller Chrome og velg «Legg til på Hjem-skjerm». Da åpner Ordra i full skjerm som en vanlig app.</p></details>
     <details><summary>Hvor ligger dataene mine?</summary><p>På din egen enhet. I gratisversjonen lastes ingenting opp. Ta derfor sikkerhetskopi av og til, siden det bare ligger hos deg.</p></details>
-    <details><summary>Hvilke språk finnes?</summary><p>Appen finnes på norsk, engelsk, svensk, dansk og tysk. Du bytter språk i appen under Mer. Nettsiden finnes på norsk og engelsk.</p></details>
+    <details><summary>Hvilke språk finnes?</summary><p>Appen og nettsiden finnes på norsk og engelsk. Du bytter språk øverst på første skjerm i appen, eller under Mer. Svensk, dansk og tysk kommer.</p></details>
     <details><summary>Erstatter den regnskapssystemet?</summary><p>Nei. Ordra lager fakturagrunnlaget. Selve fakturaen sender du fra regnskapssystemet du allerede bruker.</p></details>
     <details><summary>Hva med AI-funksjonene?</summary><p>AI-funksjonene og assistenten Jarvis er under utvikling og testes før de slippes. Versjonen som er ute nå, har ingen AI.</p></details>
   </div>
@@ -221,5 +221,13 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:18px
   <div><h4>Kontakt</h4><a href="mailto:ordra.ordra@gmail.com">ordra.ordra@gmail.com</a><a href="en/" lang="en" hreflang="en">English</a></div>
   <div class="legal">© 2026 Ordra. Personvern og vilkår finner du i appen under Mer. Kunder, adresser og beløp i skjermbildet er eksempler.</div>
 </div></footer>
+<script>
+/* Anonym besøksstatistikk. Ingen informasjonskapsler og ingen lagret ID. */
+(function(){var U='https://felvyluwyagupazelqjt.supabase.co',K='sb_publishable_oYBUjWWOvRZ0sPWB_juIZg_brRekQ2i',okt=Math.random().toString(36).slice(2,10)+Date.now().toString(36),n=0,kilde='';
+try{var q=new URLSearchParams(location.search);kilde=(q.get('utm_source')||q.get('fra')||(document.referrer?new URL(document.referrer).hostname:'')||'').slice(0,60)}catch(e){}
+function spor(h,d){try{if(/^(localhost|127\.)/.test(location.hostname)||/claude\.ai|claudeusercontent/.test(location.hostname)||n++>100)return;fetch(U+'/rest/v1/hendelser',{method:'POST',keepalive:true,headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({okt:okt,flate:'nettside',hendelse:h,detalj:String(d||'').slice(0,80),sprak:'nb',kilde:kilde,versjon:''})}).catch(function(){})}catch(e){}}
+spor('side_vist',location.pathname.slice(-20));
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');spor('trykk',/^mailto:/.test(h)?'epost':/github\.io\/ordra\/$/.test(h)?'aapne_appen: '+a.textContent.trim().slice(0,40):h.charAt(0)==='#'?h:a.hreflang?'spraak:'+a.hreflang:'lenke')});})();
+</script>
 </body>
 </html>
