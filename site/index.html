@@ -94,6 +94,11 @@ section{padding:72px 0}
 .why p{font-size:18px;margin-bottom:14px}
 @media(max-width:860px){.why{grid-template-columns:1fr;gap:20px}}
 
+.msg{background:var(--paper);color:var(--ink2);border-radius:18px;padding:24px;max-width:400px;justify-self:end;width:100%}
+.msg .mh{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:10px}.msg .mh b{color:var(--ink);font-weight:800}
+.msg h3{font:800 34px/1 var(--disp);text-transform:uppercase;margin:0}
+.msg dl{margin:16px 0 0;font-size:16px}.msg dl div{display:flex;gap:14px;padding:11px 0;border-top:1px solid var(--line)}.msg dt{color:var(--muted);flex:0 0 62px}.msg dd{margin:0;color:var(--ink)}
+@media(max-width:860px){.msg{justify-self:start}}
 .faq{max-width:780px;border-top:2px solid var(--ink)}
 details{border-bottom:1px solid var(--line);padding:18px 0}
 summary{cursor:pointer;font-weight:800;font-size:18px;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:12px}
@@ -164,9 +169,19 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:18px
   </ol>
 </div></section>
 
-<section class="dark" style="padding:44px 0;border-top:1px solid var(--rule)"><div class="wrap why">
-  <div><span class="eyebrow">Under utvikling</span><h2 style="font-size:clamp(32px,4.6vw,52px)">AI-funksjoner og Jarvis</h2></div>
-  <div><p style="font-size:17px;margin:0">Vi bygger en assistent som kan skrive tilbud, følge opp kunder og holde orden for deg. Den heter Jarvis. Den testes nå og slippes når den er klar. Versjonen som er ute i dag, har ingen AI.</p></div>
+<section class="dark" style="border-top:1px solid var(--rule)"><div class="wrap why">
+  <div>
+    <span class="eyebrow">Under utvikling</span>
+    <h2>En AI som tar telefonen når du står midt i jobben</h2>
+    <p style="font-size:18px;margin:22px 0 14px">Det var her Ordra startet. Jarvis er en AI-assistent som svarer når du ikke kan. Den sier at den er en AI, spør hva det gjelder, tar navn og adresse, og sender deg en oppsummering. Den lover aldri pris eller tidspunkt på dine vegne.</p>
+    <p style="font-size:18px;margin:0 0 14px">Senere skal Jarvis også skrive tilbud og følge opp kunder, alltid med din godkjenning først.</p>
+    <p style="font-size:16px;margin:0;color:#8d8982">Jarvis testes nå og slippes når den er klar. Versjonen som er ute i dag, har ingen AI. Vil du prøve tidlig, skriver du til ordra.ordra@gmail.com.</p>
+  </div>
+  <div class="msg" aria-label="Eksempel på oppsummering fra Jarvis">
+    <div class="mh"><b>Jarvis</b><span>Eksempel</span></div>
+    <h3>Ny henvendelse</h3>
+    <dl><div><dt>Hvem</dt><dd>Styreleder i et sameie</dd></div><div><dt>Hva</dt><dd>Balkongdør i 3. etasje går ikke igjen. Haster ikke.</dd></div><div><dt>Neste</dt><dd>Ring tilbake på nummeret hun ringte fra.</dd></div></dl>
+  </div>
 </div></section>
 
 <section id="pris"><div class="wrap">
