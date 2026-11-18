@@ -237,7 +237,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid #2a2a2a;padding-top:20px;mar
 
 <script>
 /* Anonym besøksstatistikk. Ingen informasjonskapsler og ingen lagret ID. */
-(function(){var U='https://felvyluwyagupazelqjt.supabase.co',K='sb_publishable_oYBUjWWOvRZ0sPWB_juIZg_brRekQ2i',okt=Math.random().toString(36).slice(2,10)+Date.now().toString(36),n=0,kilde='';
+(function(){var U='https://zfohsvnoszvpyedlvjgu.supabase.co',K='sb_publishable_O9UuFPde_zqQ2zeXxejkUg_vVSiCh-s',okt=Math.random().toString(36).slice(2,10)+Date.now().toString(36),n=0,kilde='';
 try{var q=new URLSearchParams(location.search);kilde=(q.get('utm_source')||q.get('fra')||(document.referrer?new URL(document.referrer).hostname:'')||'').slice(0,60)}catch(e){}
 function spor(h,d){try{if(/^(localhost|127\.)/.test(location.hostname)||/claude\.ai|claudeusercontent/.test(location.hostname)||n++>100)return;fetch(U+'/rest/v1/hendelser',{method:'POST',keepalive:true,headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({okt:okt,flate:'nettside',hendelse:h,detalj:String(d||'').slice(0,80),sprak:'en',kilde:kilde,versjon:''})}).catch(function(){})}catch(e){}}
 spor('side_vist',location.pathname.slice(-20));
